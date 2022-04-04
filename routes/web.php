@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\OutcomeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
@@ -43,7 +44,7 @@ Route::put('/data-customer/{user:id}/update', [CustomerController::class, 'updat
 Route::delete('/data-customer/{user:id}/delete', [CustomerController::class, 'destroy'])->name('deleteCustomer');
 
 // Permohonan
-Route::get('/data-permohonan', [OrderController::class, 'index'])->name('show.permohonan');
+Route::get('/data-permohonan', [OrderController::class, 'index'])->name('index.permohonan');
 Route::get('/input-permohonan', [OrderController::class, 'create'])->name('form.permohonan');
 
 // Pengeluaran
@@ -54,6 +55,11 @@ Route::get('/data-pengeluaran/{user:id}/detail', [OutcomeController::class, 'sho
 Route::put('/data-pengeluaran/{user:id}/update', [OutcomeController::class, 'update'])->name('update.pengeluaran');
 Route::delete('/data-pengeluaran/{user:id}/delete', [OutcomeController::class, 'destroy'])->name('delete.pengeluaran');
 
+// Karyawan
+Route::get('/data-karyawan', [WorkerController::class, 'index'])->name('index.karyawan');
+Route::get('/input-karyawan', [WorkerController::class, 'create'])->name('form.karyawan');
+
 // User
-Route::get('/data-user', [UserController::class, 'index'])->name('show.user');
+Route::get('/data-user', [UserController::class, 'index'])->name('index.user');
+Route::get('/input-user', [UserController::class, 'create'])->name('form.user');
 

@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pendapatan</h6>
+                                    <h6 class="text-muted font-semibold">Pengeluaran</h6>
                                     <h6 class="font-extrabold mb-0">112</h6>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="row mx-auto">
-            <div class="col">  
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h5>Permohonan Terbaru</h5>
@@ -91,14 +91,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-        
+
                             </tbody>
-                            <tfoot>
-                                <th>Pembeli</th>
-                                    <th>Jenis Permohonan</th>
-                                    <th>Jenis Sertifikat</th>
-                                    <th>Penjual</th>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -109,7 +103,19 @@
                         <h5>Pengingat Deadline</h5>
                     </div>
                     <div class="card-body">
-                        
+                        <table class="table-striped" id="dataNotice">
+                            <thead>
+                                <tr>
+                                    <th>Pembeli</th>
+                                    <th>Jenis Permohonan</th>
+                                    <th>Jenis Sertifikat</th>
+                                    <th>Penjual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -121,6 +127,16 @@
 <script>
     $(document).ready(function() {
         $('#dataNew').DataTable( {
+            "paging":   false,
+            "info":     false,
+            "searching": false,
+            "order": false
+        } );
+    } );
+</script>
+<script>
+    $(document).ready(function() {
+        $('#dataNotice').DataTable( {
             "paging":   false,
             "info":     false,
             "searching": false,

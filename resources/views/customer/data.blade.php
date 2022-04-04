@@ -3,8 +3,8 @@
 @section('main')
     <div class="card">
         <div class="card-body">
-            <table class="table-striped" id="dataNasabah">
-                <thead>
+            <table class="table table-striped" id="dataNasabah">
+                <thead class="bg-primary text-white">
                     <tr>
                         <th>No</th>
                         <th>KTP</th>
@@ -19,13 +19,13 @@
                 <tbody>
                     @foreach ($datas as $number => $data)
                         <tr>
-                           <td>{{ $number +1 }}</td> 
-                           <td>{{ $data->ktp }}</td> 
-                           <td>{{ $data->nama }}</td> 
-                           <td>{{ $data->tanggal_lahir }}</td> 
-                           <td>{{ $data->telepon }}</td> 
-                           <td>{{ $data->pekerjaan }}</td> 
-                           <td>{{ $data->alamat }}</td> 
+                           <td>{{ $number +1 }}</td>
+                           <td>{{ $data->ktp }}</td>
+                           <td>{{ $data->nama }}</td>
+                           <td>{{ $data->tanggal_lahir }}</td>
+                           <td>{{ $data->telepon }}</td>
+                           <td>{{ $data->pekerjaan }}</td>
+                           <td>{{ $data->alamat }}</td>
                            <td>
                                <div class="d-flex">
                                    <a class="btn btn-primary me-2" href="{{ route('upshowCustomer', $data->id) }}" role="button">Rincian</a>
@@ -39,7 +39,7 @@
                         </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
+                <tfoot class="bg-primary text-white">
                     <th>No</th>
                     <th>KTP</th>
                     <th>Nama Lengkap</th>

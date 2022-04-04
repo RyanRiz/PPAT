@@ -1,17 +1,15 @@
 @extends('layouts.main')
 
 @section('main')
-    <div class="card">
+
+<div class="card">
+    <div class="card-content">
         <div class="card-body">
-            <table class="table table-striped" id="dataPermohonan">
+            <table class="table table-striped" id="dataKaryawan">
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>No</th>
-                        <th>Pembeli</th>
-                        <th>Jenis Permohonan</th>
-                        <th>Jenis Sertifikat</th>
-                        <th>No Sertifikat</th>
-                        <th>Penjual</th>
+                        <th>Nama Lengkap</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -21,23 +19,21 @@
                 <tfoot class="bg-primary text-white">
                     <tr>
                         <th>No</th>
-                        <th>Pembeli</th>
-                        <th>Jenis Permohonan</th>
-                        <th>Jenis Sertifikat</th>
-                        <th>No Sertifikat</th>
-                        <th>Penjual</th>
+                        <th>Nama Lengkap</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
+</div>
+
 @endsection
 
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('#dataPermohonan').DataTable(  );
+        $('#dataKaryawan').DataTable(  );
     } );
 </script>
 @endpush
