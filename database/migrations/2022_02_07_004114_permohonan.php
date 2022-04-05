@@ -14,10 +14,12 @@ class Permohonan extends Migration
     public function up()
     {
         Schema::create('permohonan', function (Blueprint $table){
-            $table->foreignId('user_id');
+            $table->id();
+            $table->integer('pembeli_id');
+            $table->integer('penjual_id');
             $table->string('jenis_permohonan');
             $table->string('jenis_sertifikat');
-            $table->string('sertifikat');
+            $table->string('sertifikat')->unique();
             $table->integer('luas_tanah');
             $table->integer('luas_bangunan');
             $table->string('nop');

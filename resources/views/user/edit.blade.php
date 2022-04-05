@@ -3,36 +3,40 @@
 @section('main')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('store.pengeluaran') }}" class="p-2" method="POST">
+            <form action="{{ route('update.user', $data->id) }}" class="p-2" method="POST">
                 @csrf
+                @method('put')
                 <div class="row">
                     <div class="col-md-5">
-                        <label>Tanggal Pembelian</label>
+                        <label>Nama Lengkap</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="date" class="form-control" name="tanggal_pembelian" placeholder="Tanggal Pembelian">
+                        <input type="text" value="{{ $data->name }}" class="form-control" name="nama" placeholder="Nama Lengkap">
                     </div>
                     <div class="col-md-5">
-                        <label>Nama Barang</label>
+                        <label>Username</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang">
+                        <input type="text" value="{{ $data->username }}" class="form-control" name="username" placeholder="Username">
                     </div>
                     <div class="col-md-5">
-                        <label>Jumlah Barang</label>
+                        <label>Password</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="jumlah_barang" placeholder="Jumlah Barang">
+                        <input type="text" class="form-control" name="password" placeholder="Password">
                     </div>
                     <div class="col-md-5">
-                        <label>Harga</label>
+                        <label>Role</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="harga" placeholder="Harga">
+                        <select name="role" class="form-select" aria-label="Default select example">
+                            <option value="admin" @if ($data->roles == "admin") selected @endif>Admin</option>
+                            <option value="pengelola" @if ($data->roles == "pengelola") selected @endif>Pengelola</option>
+                          </select>
                     </div>
                     <div class="pt-5 col-sm-12 d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-outline-secondary" href="{{ route('index.pengeluaran') }}" role="button"><i class="mdi mdi-step-backward-2"></i>
+                            <a class="btn btn-outline-secondary" href="{{ route('index.user') }}" role="button"><i class="mdi mdi-step-backward-2"></i>
                                 Kembali
                             </a>
                         </div>

@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('main')
+
+    <div class="pb-4">
+        <a class="btn btn-primary" href="{{ route('form.customer') }}" role="button"><i class="mdi mdi-file-plus"></i>
+            Tambah Customer
+        </a>
+    </div>
     <div class="card">
         <div class="card-body">
             <table class="table table-striped" id="dataNasabah">
@@ -28,12 +34,7 @@
                            <td>{{ $data->alamat }}</td>
                            <td>
                                <div class="d-flex">
-                                   <a class="btn btn-primary me-2" href="{{ route('upshowCustomer', $data->id) }}" role="button">Rincian</a>
-                                   <form action="{{ route('deleteCustomer', $data->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                       <button class="btn btn-danger me-2">Hapus</button>
-                                   </form>
+                                   <a class="btn btn-secondary me-2" href="{{ route('show.customer', $data->id) }}" role="button">Rincian</a>
                                </div>
                            </td>
                         </tr>

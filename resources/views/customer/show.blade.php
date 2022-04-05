@@ -4,59 +4,97 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="form" action="{{ route('updateCustomer', $data->id) }}" method="post">
-                    @csrf
-                        @method('PUT')
-                    <div class="row">
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="first-name-column">KTP</label>
-                                <input type="text" id="first-name-column" class="form-control"
-                                    placeholder="KTP" name="ktp" value="{{ $data->ktp }}">
+                <div class="col-md-12 d-flex justify-content-between mb-5">
+                    <div>
+                        <a class="btn btn-outline-secondary" href="{{ route('index.customer') }}" role="button"><i class="mdi mdi-step-backward-2"></i>
+                            Kembali
+                        </a>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <div class="pe-2">
+                                <a class="btn btn-secondary" href="{{ route('edit.customer', $data->id) }}" role="button"><i class="mdi mdi-pencil-box"></i>
+                                    Sunting
+                                </a>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="last-name-column">Nama</label>
-                                <input type="text" id="last-name-column" class="form-control"
-                                    placeholder="Nama" name="nama" value="{{ $data->nama }}">
+                            <div>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="mdi mdi-delete"></i>
+                                    Hapus
+                                  </button>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="company-column">Tanggal Lahir</label>
-                                <input type="date" id="company-column" class="form-control"
-                                    name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ $data->tanggal_lahir }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="city-column">No. Handphone</label>
-                                <input type="text" id="city-column" class="form-control" placeholder="No. Handphone"
-                                    name="telepon" value="{{ $data->telepon }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="country-floating">Pekerjaan</label>
-                                <input type="text" id="country-floating" class="form-control"
-                                    name="pekerjaan" placeholder="Pekerjaan" value="{{ $data->pekerjaan }}">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="email-id-column">Alamat</label>
-                                <input type="text" id="email-id-column" class="form-control"
-                                    name="alamat" placeholder="Alamat" value="{{ $data->alamat }}">
-                            </div>
-                        </div>
-                        <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary me-2" role="button">Update</button>
-                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                         </div>
                     </div>
-                </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>No. KTP</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" value="{{ $data->ktp }}" class="form-control" name="ktp" placeholder="No. KTP">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Nama Lengkap</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" value="{{ $data->nama }}" class="form-control" name="nama" placeholder="Nama Lengkap">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Lahir</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="date" value="{{ $data->tanggal_lahir }}" data-date-format="mm/dd/yyyy" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                    </div>
+                    <div class="col-md-5">
+                        <label>No. Handphone</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" class="form-control" value="{{ $data->telepon }}" placeholder="No. Handphone" name="telepon">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Pekerjaan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" value="{{ $data->pekerjaan }}" class="form-control" placeholder="Pekerjaan" name="pekerjaan">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Alamat</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <textarea readonly class="form-control" placeholder="Alamat" name="alamat">{{ $data->alamat }}</textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Peringatan!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h4 class="text-center mb-2 text-black">Apakah yakin ingin menghapus data?</h4 class="text-center mb-2 text-black">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="pe-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    <div>
+                        <form action="{{ route('delete.customer', $data->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                            <button class="btn btn-danger">
+                                Hapus
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

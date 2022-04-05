@@ -2,6 +2,11 @@
 
 @section('main')
 
+<div class="pb-4">
+    <a class="btn btn-primary" href="{{ route('form.karyawan') }}" role="button"><i class="mdi mdi-file-plus"></i>
+        Tambah Karyawan
+    </a>
+</div>
 <div class="card">
     <div class="card-content">
         <div class="card-body">

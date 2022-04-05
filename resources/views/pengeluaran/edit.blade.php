@@ -3,32 +3,33 @@
 @section('main')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('store.pengeluaran') }}" class="p-2" method="POST">
+            <form action="{{ route('update.pengeluaran', $data->id) }}" class="p-2" method="POST">
                 @csrf
+                @method('put')
                 <div class="row">
                     <div class="col-md-5">
                         <label>Tanggal Pembelian</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="date" class="form-control" name="tanggal_pembelian" placeholder="Tanggal Pembelian">
+                        <input type="date" value="{{ $data->tanggal_pembelian }}" class="form-control" name="tanggal_pembelian" placeholder="Tanggal Pembelian">
                     </div>
                     <div class="col-md-5">
                         <label>Nama Barang</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang">
+                        <input type="text" value="{{ $data->nama_barang }}" class="form-control" name="nama_barang" placeholder="Nama Barang">
                     </div>
                     <div class="col-md-5">
                         <label>Jumlah Barang</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="jumlah_barang" placeholder="Jumlah Barang">
+                        <input type="text" value="{{ $data->jumlah_barang }}" class="form-control" name="jumlah_barang" placeholder="Jumlah Barang">
                     </div>
                     <div class="col-md-5">
                         <label>Harga</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="harga" placeholder="Harga">
+                        <input type="text" value="{{ $data->harga }}" class="form-control" name="harga" placeholder="Harga">
                     </div>
                     <div class="pt-5 col-sm-12 d-flex justify-content-between">
                         <div>

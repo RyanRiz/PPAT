@@ -4,14 +4,15 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="p-2" action="{{ route('store.customer') }}" method="post">
+                <form class="p-2" action="{{ route('update.customer', $data->id) }}" method="post">
                     @csrf
+                    @method('put')
                     <div class="row">
                         <div class="col-md-5">
                             <label>No. KTP</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <input type="text" class="form-control @error('ktp') is-invalid @enderror" name="ktp" placeholder="No. KTP">
+                            <input type="text" value="{{ $data->ktp }}" class="form-control @error('ktp') is-invalid @enderror" name="ktp" placeholder="No. KTP">
                             @error('ktp')
                             <div class="alert alert-danger mt-2 alert-dismissible fade show">
                                 <strong>{{ $message }}</strong>
@@ -22,31 +23,31 @@
                             <label>Nama Lengkap</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <input type="text" value="{{ old('nama') }}" class="form-control" name="nama" placeholder="Nama Lengkap">
+                            <input type="text" class="form-control" value="{{ $data->nama }}" name="nama" placeholder="Nama Lengkap">
                         </div>
                         <div class="col-md-5">
                             <label>Tanggal Lahir</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <input type="date" data-date-format="mm/dd/yyyy" value="{{ old('date') }}" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                            <input type="date" data-date-format="mm/dd/yyyy" value="{{ $data->tanggal_lahir }}" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
                         </div>
                         <div class="col-md-5">
                             <label>No. Handphone</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <input type="text" class="form-control" value="{{ old('telepon') }}" placeholder="No. Handphone" name="telepon">
+                            <input type="text" class="form-control" placeholder="No. Handphone" value="{{ $data->telepon }}" name="telepon">
                         </div>
                         <div class="col-md-5">
                             <label>Pekerjaan</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <input type="text" class="form-control" value="{{ old('pekerjaan') }}" placeholder="Pekerjaan" name="pekerjaan">
+                            <input type="text" class="form-control" placeholder="Pekerjaan" value="{{ $data->pekerjaan }}" name="pekerjaan">
                         </div>
                         <div class="col-md-5">
                             <label>Alamat</label>
                         </div>
                         <div class="col-md-7 form-group">
-                            <textarea type="text" class="form-control" placeholder="Alamat" name="alamat">{{ old('alamat') }}</textarea>
+                            <textarea type="text" class="form-control" placeholder="Alamat" name="alamat">{{ $data->alamat }}</textarea>
                         </div>
                         <div class="pt-5 col-sm-12 d-flex justify-content-between">
                             <div>

@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('main')
+    <div class="pb-4">
+        <a class="btn btn-primary" href="{{ route('form.permohonan') }}" role="button"><i class="mdi mdi-file-plus"></i>
+            Tambah Permohonan
+        </a>
+    </div>
     <div class="card">
         <div class="card-body">
             <table class="table table-striped" id="dataPermohonan">

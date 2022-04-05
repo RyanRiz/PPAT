@@ -1,9 +1,15 @@
 @extends('layouts.main')
 
 @section('main')
+
+    <div class="pb-4">
+        <a class="btn btn-primary" href="{{ route('form.pengeluaran') }}" role="button"><i class="mdi mdi-file-plus"></i>
+            Tambah Pengeluaran
+        </a>
+    </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped" id="dataPermohonan">
+            <table class="table table-striped" id="dataPengeluaran">
                 <thead class="bg-primary text-white">
                     <th>No</th>
                     <th>Tanggal Pembelian</th>
@@ -20,16 +26,11 @@
                         <td>{{ $data->tanggal_pembelian }}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->jumlah_barang }}</td>
-                        <td>{{ $data->harga }}</td>
-                        <td>{{ $total }}</td>
+                        <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
+                        <td>{{ number_format($data->total_harga, 0, ',', '.') }}</td>
                         <td>
                             <div class="d-flex">
-                                <a class="btn btn-primary me-2" href="{{ route('update-form.pengeluaran', $data->id) }}" role="button">Rincian</a>
-                                <form action="{{ route('delete.pengeluaran', $data->id) }}" method="POST">
-                                 @csrf
-                                 @method('DELETE')
-                                    <button class="btn btn-danger me-2">Hapus</button>
-                                </form>
+                                <a class="btn btn-secondary me-2" href="{{ route('show.pengeluaran', $data->id) }}" role="button">Rincian</a>
                             </div>
                         </td>
                     </tr>
@@ -52,8 +53,8 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('#dataPermohonan').DataTable( {
-            "order": [[ 1, "desc" ]]
+        $('#dataPengeluaran').DataTable( {
+            "order": [[ 3, "desc" ]]
         } );
     } );
 </script>

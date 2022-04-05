@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Outcomes;
-use PhpParser\Node\Expr\New_;
-use Symfony\Component\Console\Output\Output;
 
 class OutcomeController extends Controller
 {
@@ -16,11 +14,9 @@ class OutcomeController extends Controller
      */
     public function index()
     {
-        $total = Outcomes::sum(Outcomes::raw('jumlah_barang * harga'));
         return view('pengeluaran.data', [
             'title' => 'Data Pengeluaran',
-            "datas" => Outcomes::all(),
-            'total' => $total
+            "datas" => Outcomes::all()
         ]);
     }
 
@@ -44,15 +40,28 @@ class OutcomeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "tanggal_pembelian" => "required",
+            "nama_barang" => "required",
+            "jumlah_barang" => "required",
+            "harga" => "required"
+        ]);
+
         $input = New Outcomes;
+
+        $jumlah = $request->jumlah_barang;
+        $harga = $request->harga;
 
         $input->tanggal_pembelian = $request->tanggal_pembelian;
         $input->nama_barang = $request->nama_barang;
-        $input->jumlah_barang = $request->jumlah_barang;
-        $input->harga = $request->harga;
+        $input->jumlah_barang = $jumlah;
+        $input->harga = $harga;
+
+        $total = $jumlah * $harga;
+        $input->total_harga = $total;
 
         $input->save();
-        return redirect()->route('show.pengeluaran');
+        return redirect()->route('index.pengeluaran')->with('message','Data berhasil ditambahkan!');
     }
 
     /**
@@ -79,7 +88,12 @@ class OutcomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Outcomes::find($id);
+
+        return view('pengeluaran.edit', [
+            "title" => "Data Pengeluaran",
+            "data" => $data
+        ]);
     }
 
     /**
@@ -93,13 +107,19 @@ class OutcomeController extends Controller
     {
         $input = Outcomes::find($id);
 
+        $jumlah = $request->jumlah_barang;
+        $harga = $request->harga;
+
         $input->tanggal_pembelian = $request->tanggal_pembelian;
         $input->nama_barang = $request->nama_barang;
-        $input->jumlah_barang = $request->jumlah_barang;
-        $input->harga = $request->harga;
+        $input->jumlah_barang = $jumlah;
+        $input->harga = $harga;
+
+        $total = $jumlah * $harga;
+        $input->total_harga = $total;
 
         $input->update();
-        return redirect()->route('show.pengeluaran');
+        return redirect()->route('index.pengeluaran')->with('message','Data berhasil diperbarui!');
     }
 
     /**
@@ -112,6 +132,6 @@ class OutcomeController extends Controller
     {
         $data = Outcomes::findOrFail($id);
         $data->delete();
-        return redirect()->route('show.pengeluaran');
+        return redirect()->route('index.pengeluaran')->with('message','Data berhasil dihapus!');
     }
 }

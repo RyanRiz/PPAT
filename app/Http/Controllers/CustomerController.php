@@ -40,8 +40,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "ktp" => "required|unique:customers:ktp",
+        $this->validate($request, [
+            "ktp" => "required|unique:customers,ktp",
             "nama" => "required",
             "tanggal_lahir" => "required",
             "telepon" => "required",
@@ -59,7 +59,7 @@ class CustomerController extends Controller
         $input->alamat = $request->alamat;
 
         $input->save();
-        return redirect()->route('showCustomer');
+        return redirect()->route('index.customer')->with('message','Data berhasil ditambahkan!');
     }
 
     /**
@@ -86,7 +86,12 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Customers::find($id);
+
+        return view('customer.edit', [
+            "title" => "Data Customer",
+            "data" => $data
+        ]);
     }
 
     /**
@@ -98,7 +103,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $data = Customers::find($id);
 
         $data->ktp = $request->ktp;
@@ -107,9 +111,9 @@ class CustomerController extends Controller
         $data->telepon = $request->telepon;
         $data->pekerjaan = $request->pekerjaan;
         $data->alamat = $request->alamat;
-
         $data->update();
-        return redirect()->back();
+
+        return redirect()->back()->with('message','Data berhasil diubah!');
     }
 
     /**
@@ -122,6 +126,6 @@ class CustomerController extends Controller
     {
         $data = Customers::findOrFail($id);
         $data->delete();
-        return 'berhasil';
+        return redirect()->route('index.customer')->with('message','Data berhasil dihapus!');
     }
 }

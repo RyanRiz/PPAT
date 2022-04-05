@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOutcome extends Migration
+class CreateDetailPermohonan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateOutcome extends Migration
      */
     public function up()
     {
-        Schema::create('outcomes', function (Blueprint $table) {
+        Schema::create('detail_permohonan', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_pembelian');
-            $table->string('nama_barang');
-            $table->integer('jumlah_barang');
-            $table->string('harga');
-            $table->string('total_harga');
+            $table->foreignId("permohonan_id")->constrained('permohonan')->onDelete('cascade');
+            $table->string('rincian_biaya');
+            $table->string('biaya');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateOutcome extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('outcome');
+        Schema::dropIfExists('detail_permohonan');
     }
 }

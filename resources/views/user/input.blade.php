@@ -3,7 +3,7 @@
 @section('main')
     <div class="card">
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('store.user') }}" class="p-2" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-5">
@@ -28,12 +28,12 @@
                         <label>Role</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <select class="form-select" aria-label="Default select example">
+                        <select name="role" class="form-select" aria-label="Default select example">
                             <option value="admin">Admin</option>
                             <option value="pengelola">Pengelola</option>
                           </select>
                     </div>
-                    <div class="pt-3 col-sm-12 d-flex justify-content-between">
+                    <div class="pt-5 col-sm-12 d-flex justify-content-between">
                         <div>
                             <a class="btn btn-outline-secondary" href="{{ route('index.user') }}" role="button"><i class="mdi mdi-step-backward-2"></i>
                                 Kembali

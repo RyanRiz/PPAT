@@ -36,22 +36,24 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/', [AdminController::class, 'index']);
 
 // Customer
-Route::get('/data-customer', [CustomerController::class, 'index'])->name('showCustomer');
-Route::get('/input-customer', [CustomerController::class, 'create'])->name('formCustomer');
-Route::get('/data-customer/{user:id}/detail', [CustomerController::class, 'show'])->name('upshowCustomer');
-Route::post('/input-customer/store', [CustomerController::class, 'store'])->name('inputCustomer');
-Route::put('/data-customer/{user:id}/update', [CustomerController::class, 'update'])->name('updateCustomer');
-Route::delete('/data-customer/{user:id}/delete', [CustomerController::class, 'destroy'])->name('deleteCustomer');
+Route::get('/data-customer', [CustomerController::class, 'index'])->name('index.customer');
+Route::get('/input-customer', [CustomerController::class, 'create'])->name('form.customer');
+Route::post('/input-customer/store', [CustomerController::class, 'store'])->name('store.customer');
+Route::get('/data-customer/{user:id}/detail', [CustomerController::class, 'show'])->name('show.customer');
+Route::get('/data-customer/{user:id}/edit', [CustomerController::class, 'edit'])->name('edit.customer');
+Route::put('/data-customer/{user:id}/update', [CustomerController::class, 'update'])->name('update.customer');
+Route::delete('/data-customer/{user:id}/delete', [CustomerController::class, 'destroy'])->name('delete.customer');
 
 // Permohonan
 Route::get('/data-permohonan', [OrderController::class, 'index'])->name('index.permohonan');
 Route::get('/input-permohonan', [OrderController::class, 'create'])->name('form.permohonan');
 
 // Pengeluaran
-Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('show.pengeluaran');
+Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('index.pengeluaran');
 Route::get('/input-pengeluaran', [OutcomeController::class, 'create'])->name('form.pengeluaran');
-Route::post('/input-pengeluaran', [OutcomeController::class, 'store'])->name('input.pengeluaran');
-Route::get('/data-pengeluaran/{user:id}/detail', [OutcomeController::class, 'show'])->name('update-form.pengeluaran');
+Route::post('/input-pengeluaran', [OutcomeController::class, 'store'])->name('store.pengeluaran');
+Route::get('/data-pengeluaran/{user:id}/detail', [OutcomeController::class, 'show'])->name('show.pengeluaran');
+Route::get('/data-pengeluaran/{user:id}/edit', [OutcomeController::class, 'edit'])->name('edit.pengeluaran');
 Route::put('/data-pengeluaran/{user:id}/update', [OutcomeController::class, 'update'])->name('update.pengeluaran');
 Route::delete('/data-pengeluaran/{user:id}/delete', [OutcomeController::class, 'destroy'])->name('delete.pengeluaran');
 
@@ -62,4 +64,10 @@ Route::get('/input-karyawan', [WorkerController::class, 'create'])->name('form.k
 // User
 Route::get('/data-user', [UserController::class, 'index'])->name('index.user');
 Route::get('/input-user', [UserController::class, 'create'])->name('form.user');
+Route::post('/input-user', [UserController::class, 'store'])->name('store.user');
+Route::get('/data-user/{user:id}/detail', [UserController::class, 'show'])->name('show.user');
+Route::get('/data-user/{user:id}/edit', [UserController::class, 'edit'])->name('edit.user');
+Route::put('/data-user/{user:id}/update', [UserController::class, 'update'])->name('update.user');
+Route::delete('/data-user/{user:id}/delete', [UserController::class, 'destroy'])->name('delete.user');
+
 
