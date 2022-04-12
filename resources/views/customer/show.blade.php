@@ -62,6 +62,9 @@
                     <div class="col-md-7 form-group">
                         <textarea readonly class="form-control" placeholder="Alamat" name="alamat">{{ $data->alamat }}</textarea>
                     </div>
+                    <div class="col-md-12 pt-3">
+                        <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>
+                    </div>
                 </div>
             </div>
         </div>

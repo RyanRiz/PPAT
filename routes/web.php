@@ -47,6 +47,11 @@ Route::delete('/data-customer/{user:id}/delete', [CustomerController::class, 'de
 // Permohonan
 Route::get('/data-permohonan', [OrderController::class, 'index'])->name('index.permohonan');
 Route::get('/input-permohonan', [OrderController::class, 'create'])->name('form.permohonan');
+Route::post('/input-permohonan', [OrderController::class, 'store'])->name('store.permohonan');
+Route::get('/data-permohonan/{data:id}/detail', [OrderController::class, 'show'])->name('show.permohonan');
+Route::get('/data-permohonan/{data:id}/edit', [OrderController::class, 'edit'])->name('edit.permohonan');
+Route::put('/data-permohonan/{data:id}/update', [OrderController::class, 'update'])->name('update.permohonan');
+Route::delete('/data-permohonan/{data:id}/delete', [OrderController::class, 'destroy'])->name('delete.permohonan');
 
 // Pengeluaran
 Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('index.pengeluaran');
@@ -60,6 +65,11 @@ Route::delete('/data-pengeluaran/{user:id}/delete', [OutcomeController::class, '
 // Karyawan
 Route::get('/data-karyawan', [WorkerController::class, 'index'])->name('index.karyawan');
 Route::get('/input-karyawan', [WorkerController::class, 'create'])->name('form.karyawan');
+Route::post('/input-karyawan', [WorkerController::class, 'store'])->name('store.karyawan');
+Route::get('/data-karyawan/{user:id}/detail', [WorkerController::class, 'show'])->name('show.karyawan');
+Route::get('/data-karyawan/{user:id}/edit', [WorkerController::class, 'edit'])->name('edit.karyawan');
+Route::put('/data-karyawan/{user:id}/update', [WorkerController::class, 'update'])->name('update.karyawan');
+Route::delete('/data-karyawan/{user:id}/delete', [WorkerController::class, 'destroy'])->name('delete.karyawan');
 
 // User
 Route::get('/data-user', [UserController::class, 'index'])->name('index.user');

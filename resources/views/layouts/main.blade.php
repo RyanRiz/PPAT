@@ -11,15 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
 
-<link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
 
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/vendors/materialdesignicons/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" type="text/css"
-     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -210,15 +210,14 @@
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-    <script src="/assets/vendors/apexcharts/apexcharts.js"></script>
+    @stack('scripts')
+
     <script src="/assets/js/pages/dashboard.js"></script>
 
     <script src="/assets/js/mazer.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -260,7 +259,6 @@
         @endif
       </script>
 
-    @stack('scripts')
 </body>
 
 </html>

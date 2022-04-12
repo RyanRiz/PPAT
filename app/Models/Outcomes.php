@@ -9,7 +9,7 @@ class Outcomes extends Model
 {
     use HasFactory;
 
-    protected $table ="outcome";
+    protected $table ="outcomes";
     protected $fillable = ['tanggal_pembelian', 'nama_barang', 'jumlah_barang', 'harga'];
     protected $hidden;
 }

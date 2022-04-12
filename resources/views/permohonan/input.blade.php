@@ -3,34 +3,34 @@
 @section('main')
     <div class="card">
         <div class="card-body">
-            <form action="" class="p-2" method="post">
+            <form action="{{ route('store.permohonan') }}" class="p-2" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-5">
                         <label>No. KTP Pembeli</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="ktp_pembeli" placeholder="No. KTP Pembeli">
+                        <input type="text" value="{{ old('ktp_pembeli') }}" class="form-control" name="ktp_pembeli" placeholder="No. KTP Pembeli">
                     </div>
                     <div class="col-md-5">
                         <label>No. KTP Penjual</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="ktp_penjual" placeholder="No. KTP Penjual">
+                        <input type="text" value="{{ old('ktp_penjual') }}" class="form-control" name="ktp_penjual" placeholder="No. KTP Penjual">
                     </div>
                     <div class="col-md-5">
                         <label>Jenis Permohonan</label>
                     </div>
                     <div class="col-md-7 form-group">
                         <select class="form-select" name="jenis_permohonan" aria-label="Default select example">
-                            <option>Jual Beli</option>
-                            <option>Hibah</option>
-                            <option>APHB</option>
-                            <option>Tukar Menukar</option>
-                            <option>Pendaftaran Tanah</option>
-                            <option>Pemecahan/Pemisahan</option>
-                            <option>Penggabungan</option>
-                            <option>Roya</option>
+                            <option value="Jual Beli">Jual Beli</option>
+                            <option value="Hibah">Hibah</option>
+                            <option value="APHB">APHB</option>
+                            <option value="Tukar Menukar">Tukar Menukar</option>
+                            <option value="Pendaftaran Tanah">Pendaftaran Tanah</option>
+                            <option value="Pemecahan/Pemisahan">Pemecahan/Pemisahan</option>
+                            <option value="Penggabungan">Penggabungan</option>
+                            <option value="Roya">Roya</option>
                           </select>
                     </div>
                     <div class="col-md-5">
@@ -38,52 +38,57 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <select class="form-select" name="jenis_sertifikat" aria-label="Default select example">
-                            <option>SHM</option>
-                            <option>SHGB</option>
-                            <option>SHP</option>
+                            <option value="SHM">SHM</option>
+                            <option value="SHGB">SHGB</option>
+                            <option value="SHP">SHP</option>
                           </select>
                     </div>
                     <div class="col-md-5">
                         <label>No. Sertifikat</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="sertifikat" placeholder="No. Sertifikat">
+                        <input type="text" class="form-control @error('ktp') is-invalid @enderror" name="sertifikat" placeholder="No. Sertifikat">
+                        @error('ktp')
+                        <div class="alert alert-danger mt-2 alert-dismissible fade show">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-md-5">
                         <label>NOP</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="nop" placeholder="NOP">
+                        <input type="text" class="form-control" value="{{ old('nop') }}" name="nop" placeholder="NOP">
                     </div>
                     <div class="col-md-5">
                         <label>Lokasi Objek</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="lokasi_objek" placeholder="Lokasi Objek">
+                        <input type="text" class="form-control" value="{{ old('lokasi_objek') }}" name="lokasi_objek" placeholder="Lokasi Objek">
                     </div>
                     <div class="col-md-5">
                         <label>Luas Bangunan</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="luas_bangunan" placeholder="Luas Bangunan">
+                        <input type="text" class="form-control" value="{{ old('luas_bangunan') }}" name="luas_bangunan" placeholder="Luas Bangunan">
                     </div>
                     <div class="col-md-5">
                         <label>Luas Tanah</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="luas_tanah" placeholder="Luas Tanah">
+                        <input type="text" class="form-control" value="{{ old('luas_tanah') }}" name="luas_tanah" placeholder="Luas Tanah">
                     </div>
                     <div class="col-md-5">
                         <label>Kelurahan</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="kelurahan" placeholder="Kelurahan">
+                        <input type="text" class="form-control" value="{{ old('kelurahan') }}" name="kelurahan" placeholder="Kelurahan">
                     </div>
                     <div class="col-md-5">
                         <label>Kecamatan</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="Kecamatan" placeholder="Kecamatan">
+                        <input type="text" class="form-control" value="{{ old('kecamatan') }}" name="kecamatan" placeholder="Kecamatan">
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>

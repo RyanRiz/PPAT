@@ -8,7 +8,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped" id="dataUser">
+            <table class="table table-striped" id="data_User">
                 <thead class="bg-primary text-white">
                     <th>No</th>
                     <th>Nama Pengguna</th>
@@ -44,9 +44,16 @@
 @endsection
 
 @push('scripts')
+
 <script>
-    $(document).ready(function() {
-        $('#dataUser').DataTable(  );
+    $(document).ready( function () {
+        $('#data_User').DataTable( {
+            "paging":   true,
+            "info":     true,
+            "searching": true,
+            "order": true
+        });
     } );
 </script>
+
 @endpush

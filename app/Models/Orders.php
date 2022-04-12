@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permohonan extends Model
+class Orders extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
 
     public function details(){
-        return $this->hasMany(DetailPermohonan::class);
+        return $this->hasMany(OrderDetails::class, 'id');
     }
 }

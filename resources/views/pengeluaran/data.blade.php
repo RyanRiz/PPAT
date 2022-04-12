@@ -23,7 +23,7 @@
                     @foreach ($datas as $number => $data)
                     <tr>
                         <td>{{ $number +1 }}</td>
-                        <td>{{ $data->tanggal_pembelian }}</td>
+                        <td>{{ date('d-m-Y', strtotime($data->tanggal_pembelian)) }}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->jumlah_barang }}</td>
                         <td>{{ number_format($data->harga, 0, ',', '.') }}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Workers;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
@@ -13,8 +14,10 @@ class WorkerController extends Controller
      */
     public function index()
     {
+        $data = Workers::all();
         return view('karyawan.data', [
-            'title' => 'Data Karyawan'
+            'title' => 'Data Karyawan',
+            "datas" => $data
         ]);
     }
 
@@ -38,7 +41,29 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "nama" => "required",
+            "tempat_lahir" => "required",
+            "tanggal_lahir" => "required",
+            "status" => "required",
+            "awal_kerja" => "required",
+            "gaji" => "required",
+            "bonus" => "required",
+        ]);
+
+        $input = new Workers;
+
+        $input->nama = $request->nama;
+        $input->tempat_lahir = $request->tempat_lahir;
+        $input->tanggal_lahir = $request->tanggal_lahir;
+        $input->status = $request->status;
+        $input->tanggungan = $request->tanggungan;
+        $input->awal_kerja = $request->awal_kerja;
+        $input->gaji = $request->gaji;
+        $input->bonus = $request->bonus;
+
+        $input->save();
+        return redirect()->route('index.karyawan')->with('message','Data berhasil ditambahkan!');
     }
 
     /**
@@ -49,7 +74,12 @@ class WorkerController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Workers::find($id);
+
+        return view('karyawan.show', [
+            "title" => "Data Karyawan",
+            "data" => $data
+        ]);
     }
 
     /**
@@ -60,7 +90,12 @@ class WorkerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Workers::find($id);
+
+        return view('karyawan.edit', [
+            "title" => "Data Karyawan",
+            "data" => $data
+        ]);
     }
 
     /**
@@ -72,7 +107,19 @@ class WorkerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = Workers::find($id);
+
+        $input->nama = $request->nama;
+        $input->tempat_lahir = $request->tempat_lahir;
+        $input->tanggal_lahir = $request->tanggal_lahir;
+        $input->status = $request->status;
+        $input->tanggungan = $request->tanggungan;
+        $input->awal_kerja = $request->awal_kerja;
+        $input->gaji = $request->gaji;
+        $input->bonus = $request->bonus;
+
+        $input->update();
+        return redirect()->back()->with('message','Data berhasil diperbarui!');
     }
 
     /**
@@ -83,6 +130,8 @@ class WorkerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Workers::findOrFail($id);
+        $data->delete();
+        return redirect()->route('index.karyawan')->with('message','Data berhasil dihapus!');
     }
 }

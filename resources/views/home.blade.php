@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Pengeluaran</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $outcomes }}</h6>
                                 </div>
                             </div>
                         </div>

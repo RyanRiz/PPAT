@@ -13,9 +13,9 @@ class CreateDetailPermohonan extends Migration
      */
     public function up()
     {
-        Schema::create('detail_permohonan', function (Blueprint $table) {
+        Schema::create('order_detail', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("permohonan_id")->constrained('permohonan')->onDelete('cascade');
+            $table->foreignId("order_id")->constrained()->onDelete('cascade');
             $table->string('rincian_biaya');
             $table->string('biaya');
             $table->timestamps();

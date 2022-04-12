@@ -13,10 +13,10 @@ class Permohonan extends Migration
      */
     public function up()
     {
-        Schema::create('permohonan', function (Blueprint $table){
+        Schema::create('orders', function (Blueprint $table){
             $table->id();
-            $table->integer('pembeli_id');
-            $table->integer('penjual_id');
+            $table->integer('ktp_pembeli');
+            $table->integer('ktp_penjual');
             $table->string('jenis_permohonan');
             $table->string('jenis_sertifikat');
             $table->string('sertifikat')->unique();
@@ -26,6 +26,8 @@ class Permohonan extends Migration
             $table->string('lokasi_objek');
             $table->string('kelurahan');
             $table->string('kecamatan');
+            $table->boolean('confirmed');
+            $table->timestamps();
         });
 
     }

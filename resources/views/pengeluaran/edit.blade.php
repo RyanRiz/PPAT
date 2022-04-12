@@ -23,13 +23,13 @@
                         <label>Jumlah Barang</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" value="{{ $data->jumlah_barang }}" class="form-control" name="jumlah_barang" placeholder="Jumlah Barang">
+                        <input type="number" value="{{ $data->jumlah_barang }}" class="form-control" name="jumlah_barang" placeholder="Jumlah Barang">
                     </div>
                     <div class="col-md-5">
                         <label>Harga</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" value="{{ $data->harga }}" class="form-control" name="harga" placeholder="Harga">
+                        <input type="number" value="{{ $data->harga }}" class="form-control" name="harga" placeholder="Harga">
                     </div>
                     <div class="pt-5 col-sm-12 d-flex justify-content-between">
                         <div>

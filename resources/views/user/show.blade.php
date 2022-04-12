@@ -43,6 +43,9 @@
                 <div class="col-md-7 form-group">
                     <input readonly type="text" value="{{ $data->roles }}" class="form-control" name="role" placeholder="Roles">
                 </div>
+                <div class="col-md-12 pt-3">
+                    <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>
+                </div>
             </div>
         </div>
     </div>

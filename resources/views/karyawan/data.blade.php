@@ -15,16 +15,29 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Lengkap</th>
+                        <th>Tanggal Lahir</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach ($datas as $number => $data)
+                        <tr>
+                            <td>{{ $number +1 }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->tanggal_lahir }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-secondary me-2" href="{{ route('show.karyawan', $data->id) }}" role="button">Rincian</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 <tfoot class="bg-primary text-white">
                     <tr>
                         <th>No</th>
                         <th>Nama Lengkap</th>
+                        <th>Tanggal Lahir</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>

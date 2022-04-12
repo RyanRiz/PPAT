@@ -21,7 +21,21 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach ($datas as $number => $data)
+                        <tr>
+                            <td>{{ $number +1 }}</td>
+                            <td>{{ $customer->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                            <td>{{ $data->jenis_permohonan }}</td>
+                            <td>{{ $data->jenis_sertifikat }}</td>
+                            <td>{{ $data->sertifikat }}</td>
+                            <td>{{ $customer->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-secondary me-2" href="{{ route('show.permohonan', $data->id) }}" role="button">Rincian</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 <tfoot class="bg-primary text-white">
                     <tr>
