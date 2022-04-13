@@ -57,6 +57,12 @@
                         <input readonly type="text" value="{{ $data->pekerjaan }}" class="form-control" placeholder="Pekerjaan" name="pekerjaan">
                     </div>
                     <div class="col-md-5">
+                        <label>NPWP</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" class="form-control" value="{{ $data->npwp }}" placeholder="NPWP" name="npwp">
+                    </div>
+                    <div class="col-md-5">
                         <label>Alamat</label>
                     </div>
                     <div class="col-md-7 form-group">

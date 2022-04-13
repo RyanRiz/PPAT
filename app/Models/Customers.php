@@ -10,6 +10,6 @@ class Customers extends Model
     use HasFactory;
 
     protected $table ="customers";
-    protected $fillable = ['ktp', 'nama', 'tanggal lahir', 'telepon', 'pekerjaan', 'alamat'];
+    protected $fillable = ['ktp', 'nama', 'tanggal lahir', 'telepon', 'pekerjaan', 'npwp', 'alamat', 'confirmed'];
     protected $hidden;
 }

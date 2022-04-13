@@ -56,6 +56,7 @@ class CustomerController extends Controller
         $input->tanggal_lahir = $request->tanggal_lahir;
         $input->telepon = $request->telepon;
         $input->pekerjaan = $request->pekerjaan;
+        $input->npwp = $request->npwp;
         $input->alamat = $request->alamat;
 
         $input->save();
@@ -110,6 +111,7 @@ class CustomerController extends Controller
         $data->tanggal_lahir = $request->tanggal_lahir;
         $data->telepon = $request->telepon;
         $data->pekerjaan = $request->pekerjaan;
+        $data->npwp = $request->npwp;
         $data->alamat = $request->alamat;
         $data->update();
 

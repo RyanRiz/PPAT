@@ -64,7 +64,7 @@
                         <label>Lokasi Objek</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" value="{{ old('lokasi_objek') }}" name="lokasi_objek" placeholder="Lokasi Objek">
+                        <textarea class="form-control" name="lokasi_objek" placeholder="Lokasi Objek"></textarea>
                     </div>
                     <div class="col-md-5">
                         <label>Luas Bangunan</label>
@@ -89,6 +89,18 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control" value="{{ old('kecamatan') }}" name="kecamatan" placeholder="Kecamatan">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Kabupaten/Kota</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="text" class="form-control" value="{{ old('kabupaten') }}" name="kabupaten" placeholder="Kabupaten/Kota">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Provinsi</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="text" class="form-control" value="{{ old('provinsi') }}" name="provinsi" placeholder="Provinsi">
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>

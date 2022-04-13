@@ -43,6 +43,12 @@
                             <input type="text" class="form-control" value="{{ old('pekerjaan') }}" placeholder="Pekerjaan" name="pekerjaan">
                         </div>
                         <div class="col-md-5">
+                            <label>NPWP</label>
+                        </div>
+                        <div class="col-md-7 form-group">
+                            <input type="text" class="form-control" value="{{ old('npwp') }}" placeholder="NPWP" name="npwp">
+                        </div>
+                        <div class="col-md-5">
                             <label>Alamat</label>
                         </div>
                         <div class="col-md-7 form-group">

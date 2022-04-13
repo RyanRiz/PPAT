@@ -26,6 +26,8 @@ class Permohonan extends Migration
             $table->string('lokasi_objek');
             $table->string('kelurahan');
             $table->string('kecamatan');
+            $table->string('kabupaten');
+            $table->string('provinsi');
             $table->boolean('confirmed');
             $table->timestamps();
         });

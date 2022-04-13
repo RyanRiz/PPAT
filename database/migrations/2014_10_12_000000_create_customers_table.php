@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('telepon');
             $table->string('pekerjaan');
             $table->string('alamat');
+            $table->string('npwp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

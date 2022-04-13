@@ -13,9 +13,9 @@ class CreateDetailPermohonan extends Migration
      */
     public function up()
     {
-        Schema::create('order_detail', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("order_id")->constrained()->onDelete('cascade');
+        Schema::create('order_details', function (Blueprint $table) {
+            $table->increments("id");
+            $table->foreignId("orders_id")->constrained()->onDelete('cascade');
             $table->string('rincian_biaya');
             $table->string('biaya');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateDetailPermohonan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_permohonan');
+        Schema::dropIfExists('order_detail');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customers;
+use App\Models\OrderDetails;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 
@@ -74,10 +75,23 @@ class OrderController extends Controller
         $input->luas_tanah = $request->luas_tanah;
         $input->kelurahan = $request->kelurahan;
         $input->kecamatan = $request->kecamatan;
+        $input->kabupaten = $request->kabupaten;
+        $input->provinsi = $request->provinsi;
         $input->confirmed = false;
 
         $input->save();
         return redirect()->route('index.permohonan')->with('message','Data berhasil ditambahkan!');
+    }
+
+    public function store_detail($id, Request $request){
+        $order = Orders::find($id);
+
+        $detail = New OrderDetails();
+        $detail->rincian_biaya = $request->rincian_biaya;
+        $detail->biaya = $request->biaya;
+
+        $order = $order->details()->save($detail);
+        return redirect()->back()->with('message','Rincian berhasil ditambahkan!');
     }
 
     /**
@@ -88,8 +102,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $datas = Orders::all();
-        $data = $datas->find($id);
+        $data = Orders::find($id);
         $customer = Customers::all();
         return view('permohonan.show', [
             'title' => 'Data Permohonan',
@@ -137,6 +150,8 @@ class OrderController extends Controller
         $input->luas_tanah = $request->luas_tanah;
         $input->kelurahan = $request->kelurahan;
         $input->kecamatan = $request->kecamatan;
+        $input->kabupaten = $request->kabupaten;
+        $input->provinsi = $request->provinsi;
         $input->confirmed = false;
 
         $input->save();
@@ -151,8 +166,14 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $datas = Orders::all();
-        $data = $datas->find($id);
+        $datas = Orders::find($id);
+        $datas->delete();
+        return redirect()->route('index.permohonan')->with('message','Data berhasil dihapus!');
+    }
+
+    public function destroy_detail($id)
+    {
+        $data = OrderDetails::find($id);
         $data->delete();
         return redirect()->route('index.permohonan')->with('message','Data berhasil dihapus!');
     }

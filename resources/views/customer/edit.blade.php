@@ -44,6 +44,12 @@
                             <input type="text" class="form-control" placeholder="Pekerjaan" value="{{ $data->pekerjaan }}" name="pekerjaan">
                         </div>
                         <div class="col-md-5">
+                            <label>NPWP</label>
+                        </div>
+                        <div class="col-md-7 form-group">
+                            <input type="text" class="form-control" value="{{ $data->npwp }}" placeholder="NPWP" name="npwp">
+                        </div>
+                        <div class="col-md-5">
                             <label>Alamat</label>
                         </div>
                         <div class="col-md-7 form-group">

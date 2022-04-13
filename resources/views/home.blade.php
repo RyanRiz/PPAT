@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Permohonan</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $orders }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                         <h5>Permohonan Terbaru</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table-striped" id="dataNew">
+                        <table class="table table-striped bg-primary text-white" id="dataNew">
                             <thead>
                                 <tr>
                                     <th>Pembeli</th>
@@ -91,7 +91,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach ($datas as $number => $data)
+                                    <tr>
+                                        <td>{{ $customer->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $data->jenis_permohonan }}</td>
+                                        <td>{{ $data->jenis_sertifikat }}</td>
+                                        <td>{{ $customer->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

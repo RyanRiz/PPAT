@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/', [AdminController::class, 'index']);
 
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
 // Customer
 Route::get('/data-customer', [CustomerController::class, 'index'])->name('index.customer');
 Route::get('/input-customer', [CustomerController::class, 'create'])->name('form.customer');
@@ -52,6 +56,10 @@ Route::get('/data-permohonan/{data:id}/detail', [OrderController::class, 'show']
 Route::get('/data-permohonan/{data:id}/edit', [OrderController::class, 'edit'])->name('edit.permohonan');
 Route::put('/data-permohonan/{data:id}/update', [OrderController::class, 'update'])->name('update.permohonan');
 Route::delete('/data-permohonan/{data:id}/delete', [OrderController::class, 'destroy'])->name('delete.permohonan');
+
+// Detail Permohonan
+Route::post('/data-permohonan/{data:id}/store-detail', [OrderController::class, 'store_detail'])->name('store.detail');
+Route::delete('/data-permohonan/{data:id}/delete-detail', [OrderController::class, 'destroy_detail'])->name('delete.detail');
 
 // Pengeluaran
 Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('index.pengeluaran');
