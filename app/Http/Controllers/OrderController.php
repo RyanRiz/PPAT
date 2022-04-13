@@ -175,6 +175,6 @@ class OrderController extends Controller
     {
         $data = OrderDetails::find($id);
         $data->delete();
-        return redirect()->route('index.permohonan')->with('message','Data berhasil dihapus!');
+        return redirect()->back()->with('message','Rincian berhasil dihapus!');
     }
 }

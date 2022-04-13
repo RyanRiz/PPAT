@@ -165,7 +165,13 @@
                                 <td>{{ $detail->biaya }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <button data-bs-toggle="modal" data-bs-target="#exampleModal2" type="button" class="btn btn-danger"><i class="mdi mdi-trash-can"></i></button>
+                                        <form action="{{ route('delete.detail', $detail->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button class="btn btn-danger">
+                                                <i class="mdi mdi-trash-can"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -200,37 +206,6 @@
                         </div>
                         <div>
                             <form action="{{ route('delete.permohonan', $data->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                                <button class="btn btn-danger">
-                                    Hapus
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Delete Details -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Peringatan!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <h4 class="text-center mb-2 text-black">Apakah yakin ingin menghapus rincian?</h4 class="text-center mb-2 text-black">
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="pe-3">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        <div>
-                            <form action="{{ route('delete.detail', $data->details->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                                 <button class="btn btn-danger">
