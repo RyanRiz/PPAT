@@ -114,6 +114,24 @@
                 <div class="col-md-7 form-group">
                     <input readonly type="text" class="form-control" value="{{ $data->provinsi }}" name="provinsi" placeholder="Provinsi">
                 </div>
+                <div class="col-md-5">
+                    <label>Tanggal Dibuat Permohonan</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="date" class="form-control" value="{{ $data->tanggal_permohonan }}" name="tanggal_permohonan" placeholder="Tanggal Dibuat Permohonan">
+                </div>
+                <div class="col-md-5">
+                    <label>Tanggal Deadline Permohonan</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="date" class="form-control" value="{{ $data->tanggal_deadline }}" name="tanggal_deadline" placeholder="Tanggal Deadline Permohonan">
+                </div>
+                <div class="col-md-5">
+                    <label>Status</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="text" class="form-control" value="{{ ($data->confirmed === 1) ? 'Selesai' : 'Belum Selesai' }}" name="provinsi" placeholder="Provinsi">
+                </div>
                 <div class="col-md-12 pt-3">
                     <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>
                 </div>
@@ -139,8 +157,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="formGroupExampleInput2" class="form-label">Biaya</label>
-                                <input type="text" class="form-control" name="biaya" id="formGroupExampleInput2" placeholder="Biaya">
+                                <label for="biaya" class="form-label">Biaya</label>
+                                <input type="text" class="form-control" name="biaya" id="biaya" placeholder="Biaya">
                             </div>
                         </div>
                         <div class="col-12 text-end">
@@ -151,7 +169,7 @@
             </div>
             <div class="pt-4">
                 <table id="rincian" class="table table-striped">
-                    <thead>
+                    <thead class="bg-primary text-white">
                         <th>No.</th>
                         <th>Rincian Biaya</th>
                         <th>Biaya</th>
@@ -162,7 +180,7 @@
                             <tr>
                                 <td>{{ $number +1 }}</td>
                                 <td>{{ $detail->rincian_biaya }}</td>
-                                <td>{{ $detail->biaya }}</td>
+                                <td>Rp. {{ number_format($detail->biaya, 0, ',', '.') }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <form action="{{ route('delete.detail', $detail->id) }}" method="POST">
@@ -177,12 +195,6 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <th>No.</th>
-                        <th>Rincian Biaya</th>
-                        <th>Biaya</th>
-                        <th>Aksi</th>
-                    </tfoot>
                 </table>
             </div>
         </div>
@@ -231,5 +243,29 @@
             "order": false
         } );
     } );
+</script>
+
+<script>
+    var price = document.getElementById('biaya');
+    price.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka
+        price.value = formatprice(this.value, 'Rp. ');
+    });
+    /* Fungsi formatprice */
+    function formatprice(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            price = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            price += separator + ribuan.join('.');
+        }
+        price = split[1] != undefined ? price + ',' + split[1] : price;
+        return prefix == undefined ? price : (price ? 'Rp. ' + price : '');
+    }
 </script>
 @endpush

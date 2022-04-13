@@ -26,8 +26,8 @@
                         <td>{{ date('d-m-Y', strtotime($data->tanggal_pembelian)) }}</td>
                         <td>{{ $data->nama_barang }}</td>
                         <td>{{ $data->jumlah_barang }}</td>
-                        <td>{{ number_format($data->harga, 0, ',', '.') }}</td>
-                        <td>{{ number_format($data->total_harga, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($data->harga, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($data->total_harga, 0, ',', '.') }}</td>
                         <td>
                             <div class="d-flex">
                                 <a class="btn btn-secondary me-2" href="{{ route('show.pengeluaran', $data->id) }}" role="button">Rincian</a>
@@ -54,7 +54,7 @@
 <script>
     $(document).ready(function() {
         $('#dataPengeluaran').DataTable( {
-            "order": [[ 3, "desc" ]]
+            "order": [[ 0, "asc" ]]
         } );
     } );
 </script>

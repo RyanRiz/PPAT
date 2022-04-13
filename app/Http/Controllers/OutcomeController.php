@@ -50,7 +50,7 @@ class OutcomeController extends Controller
         $input = New Outcomes;
 
         $jumlah = $request->jumlah_barang;
-        $harga = $request->harga;
+        $harga = (int)str_replace([',', '.', 'Rp', ' '], '', $request->harga);
 
         $input->tanggal_pembelian = $request->tanggal_pembelian;
         $input->nama_barang = $request->nama_barang;

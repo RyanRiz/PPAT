@@ -34,10 +34,11 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 // Logout
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/', [AdminController::class, 'index']);
+Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
 // Profile
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/setting', [ProfileController::class, 'setting'])->name('setting');
+Route::post('/setting', [ProfileController::class, 'store'])->name('store.setting');
 
 // Customer
 Route::get('/data-customer', [CustomerController::class, 'index'])->name('index.customer');

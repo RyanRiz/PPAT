@@ -28,7 +28,7 @@
                         <label>Harga</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control" name="harga" placeholder="Harga">
+                        <input type="text" class="form-control" id="harga" name="harga" placeholder="Harga">
                     </div>
                     <div class="pt-5 col-sm-12 d-flex justify-content-between">
                         <div>
@@ -50,3 +50,29 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    var price = document.getElementById('harga');
+    price.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka
+        price.value = formatprice(this.value, 'Rp. ');
+    });
+    /* Fungsi formatprice */
+    function formatprice(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            price = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            price += separator + ribuan.join('.');
+        }
+        price = split[1] != undefined ? price + ',' + split[1] : price;
+        return prefix == undefined ? price : (price ? 'Rp. ' + price : '');
+    }
+</script>
+@endpush

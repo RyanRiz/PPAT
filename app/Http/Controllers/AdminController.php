@@ -17,19 +17,19 @@ class AdminController extends Controller
     }
 
     public function index() {
-        $customers = Customers::get()->count();
-        $orders = Orders::get()->count();
+        $orders = Orders::all();
+        $customers = Customers::all();
         $months = Carbon::now();
         $outcomes = Outcomes::whereMonth('tanggal_pembelian', $months->month)->sum('total_harga');
         $datas = Orders::take(5)->get();
-        $customer = Customers::all();
+        $deadlines = Orders::where('confirmed', 0)->whereDate('tanggal_deadline', '>', Carbon::now())->orderBy('tanggal_deadline', 'ASC')->take(5)->get();
         return view('home', [
             'title' => 'Dashboard',
-            'customers' => $customers,
             'outcomes' => $outcomes,
             'orders' => $orders,
             'datas' => $datas,
-            'customer' => $customer
+            'customers' => $customers,
+            'deadlines' => $deadlines
         ]);
     }
 }

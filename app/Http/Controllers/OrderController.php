@@ -46,26 +46,30 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "ktp_pembeli" => "required",
-            "ktp_penjual" => "required",
+            "ktp_pembeli" => "required|exists:customers,ktp",
+            "ktp_penjual" => "required|exists:customers,ktp",
             "jenis_permohonan" => "required",
             "jenis_sertifikat" => "required",
-            "sertifikat" => "required",
+            "sertifikat" => "required|unique:orders,sertifikat",
             "nop" => "required",
             "lokasi_objek" => "required",
             "luas_bangunan" => "required",
             "luas_tanah" => "required",
             "kelurahan" => "required",
-            "kecamatan" => "required"
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required",
+            "tanggal_permohonan" => "required",
+            "tanggal_deadline" => "required"
         ]);
 
         $input = new Orders;
 
-        // $ktp_pembeli = Customers::where('ktp', $request->ktp_pembeli)->value('id');
-        // $ktp_penjual = Customers::where('ktp', $request->ktp_penjual)->value('id');
+        $ktp_pembeli = $request->ktp_pembeli;
+        $ktp_penjual = $request->ktp_penjual;
 
-        $input->ktp_pembeli = $request->ktp_pembeli;
-        $input->ktp_penjual = $request->ktp_penjual;
+        $input->ktp_pembeli = $ktp_pembeli;
+        $input->ktp_penjual = $ktp_penjual;
         $input->jenis_permohonan = $request->jenis_permohonan;
         $input->jenis_sertifikat = $request->jenis_sertifikat;
         $input->sertifikat = $request->sertifikat;
@@ -77,6 +81,8 @@ class OrderController extends Controller
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
         $input->provinsi = $request->provinsi;
+        $input->tanggal_permohonan = $request->tanggal_permohonan;
+        $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = false;
 
         $input->save();
@@ -86,9 +92,11 @@ class OrderController extends Controller
     public function store_detail($id, Request $request){
         $order = Orders::find($id);
 
+        $biaya = (int)str_replace([',', '.', 'Rp', ' '], '', $request->biaya);
+
         $detail = New OrderDetails();
         $detail->rincian_biaya = $request->rincian_biaya;
-        $detail->biaya = $request->biaya;
+        $detail->biaya = $biaya;
 
         $order = $order->details()->save($detail);
         return redirect()->back()->with('message','Rincian berhasil ditambahkan!');
@@ -152,7 +160,9 @@ class OrderController extends Controller
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
         $input->provinsi = $request->provinsi;
-        $input->confirmed = false;
+        $input->tanggal_permohonan = $request->tanggal_permohonan;
+        $input->tanggal_deadline = $request->tanggal_deadline;
+        $input->confirmed = $request->boolean('status');
 
         $input->save();
         return redirect()->back()->with('message','Data berhasil diubah!');

@@ -47,12 +47,7 @@
 
 <script>
     $(document).ready( function () {
-        $('#data_User').DataTable( {
-            "paging":   true,
-            "info":     true,
-            "searching": true,
-            "order": true
-        });
+        $('#data_User').DataTable( );
     } );
 </script>
 

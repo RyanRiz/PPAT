@@ -56,8 +56,8 @@
                     <div class="col-md-7 form-group">
                         <input type="text" value="{{ $data->sertifikat }}" class="form-control @error('sertifikat') is-invalid @enderror" name="sertifikat" placeholder="No. Sertifikat">
                         @error('sertifikat')
-                        <div class="alert alert-danger mt-2 alert-dismissible fade show">
-                            <strong>{{ $message }}</strong>
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
                         @enderror
                     </div>
@@ -108,6 +108,24 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control" value="{{ $data->provinsi }}" name="provinsi" placeholder="Provinsi">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Dibuat Permohonan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="date" class="form-control" value="{{ $data->tanggal_permohonan }}" name="tanggal_permohonan" placeholder="Tanggal Dibuat Permohonan">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Deadline Permohonan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="date" class="form-control" value="{{ $data->tanggal_deadline }}" name="tanggal_deadline" placeholder="Tanggal Deadline Permohonan">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="flexCheckChecked">Selesai</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input class="form-check-input" {{  ($data->confirmed === 1) ? 'checked' : '' }} name="status" type="checkbox" value="true" id="flexCheckChecked" @if ($data->confirmed == "true") checked @endif>
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>

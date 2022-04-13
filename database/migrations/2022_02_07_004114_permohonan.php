@@ -28,6 +28,8 @@ class Permohonan extends Migration
             $table->string('kecamatan');
             $table->string('kabupaten');
             $table->string('provinsi');
+            $table->date('tanggal_permohonan');
+            $table->date('tanggal_deadline');
             $table->boolean('confirmed');
             $table->timestamps();
         });

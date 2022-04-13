@@ -15,9 +15,14 @@ class CreateWorkers extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
+            $table->string('ktp')->unique();
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
+            $table->string('alamat');
+            $table->string('pekerjaan');
+            $table->string('email');
+            $table->string('handphone');
             $table->enum('status', ['kawin', 'tidak kawin']);
             $table->string('tanggungan')->nullable();
             $table->date('awal_kerja');

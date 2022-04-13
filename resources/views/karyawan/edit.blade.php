@@ -10,6 +10,12 @@
                 @method('put')
                 <div class="row">
                     <div class="col-md-5">
+                        <label>No. KTP</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input value="{{ $data->ktp }}" required type="text" class="form-control" name="ktp" placeholder="No. KTP">
+                    </div>
+                    <div class="col-md-5">
                         <label>Nama Lengkap</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -26,6 +32,30 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input required value="{{ $data->tanggal_lahir }}" type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Alamat</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <textarea required name="alamat" name="alamat" placeholder="Alamat" class="form-control">{{ $data->alamat }}</textarea>
+                    </div>
+                    <div class="col-md-5">
+                        <label>Pekerjaan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required value="{{ $data->pekerjaan }}" type="text" class="form-control" name="pekerjaan" placeholder="Pekerjaan">
+                    </div>
+                    <div class="col-md-5">
+                        <label>No. Handphone</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required value="{{ $data->handphone }}" type="text" class="form-control" name="handphone" placeholder="No. Handphone">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="email" value="{{ $data->email }}" class="form-control" name="email" placeholder="Email">
                     </div>
                     <div class="col-md-5">
                         <label>Status Hubungan</label>

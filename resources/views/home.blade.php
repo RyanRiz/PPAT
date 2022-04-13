@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Customers</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $customers }}</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $customers->count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Permohonan</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $orders }}</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $orders->count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Pengeluaran</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $outcomes }}</h6>
+                                    <h6 class="font-extrabold mb-0">Rp. {{ number_format($outcomes, 0, ',', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Pengingat</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $orders->where('confirmed', 0)->count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -74,15 +74,15 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-auto">
+        <div class="row mx-auto gx-3">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h5>Permohonan Terbaru</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped bg-primary text-white" id="dataNew">
-                            <thead>
+                        <table class="table table-striped" id="dataNew">
+                            <thead class="bg-primary text-white">
                                 <tr>
                                     <th>Pembeli</th>
                                     <th>Jenis Permohonan</th>
@@ -93,10 +93,10 @@
                             <tbody>
                                 @foreach ($datas as $number => $data)
                                     <tr>
-                                        <td>{{ $customer->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $customers->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
                                         <td>{{ $data->jenis_permohonan }}</td>
                                         <td>{{ $data->jenis_sertifikat }}</td>
-                                        <td>{{ $customer->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $customers->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -110,17 +110,24 @@
                         <h5>Pengingat Deadline</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table-striped" id="dataNotice">
-                            <thead>
+                        <table class="table table-striped" id="dataNotice">
+                            <thead class="bg-primary text-white">
                                 <tr>
                                     <th>Pembeli</th>
                                     <th>Jenis Permohonan</th>
-                                    <th>Jenis Sertifikat</th>
+                                    <th>Tanggal Deadline</th>
                                     <th>Penjual</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
+                            <tbody class="text-black">
+                                @foreach ($deadlines as $number => $deadline)
+                                    <tr>
+                                        <td>{{ $customers->where('ktp', $deadline->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $deadline->jenis_permohonan }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($deadline->tanggal_deadline)) }}</td>
+                                        <td>{{ $customers->where('ktp', $deadline->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

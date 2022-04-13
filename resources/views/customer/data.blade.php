@@ -29,7 +29,7 @@
                            <td>{{ $data->nama }}</td>
                            <td>{{ $data->telepon }}</td>
                            <td>{{ $data->pekerjaan }}</td>
-                           <td>{{ $data->created_at }}</td>
+                           <td>{{ $data->created_at->format('d-m-Y') }}</td>
                            <td>
                                <div class="d-flex">
                                    <a class="btn btn-secondary me-2" href="{{ route('show.customer', $data->id) }}" role="button">Rincian</a>
@@ -56,7 +56,7 @@
 <script>
     $(document).ready(function() {
         $('#dataNasabah').DataTable( {
-            "order": [[ 1, "desc" ]]
+            "order": [[ 0, "asc" ]]
         } );
     } );
 </script>

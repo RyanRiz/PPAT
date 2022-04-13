@@ -10,6 +10,6 @@ class Workers extends Model
     use HasFactory;
 
     protected $table ="workers";
-    protected $fillable = ['nama', 'tempat_lahir', 'tanggal lahir', 'status', 'tanggungan', 'awal_kerja', 'akhir_kerja', 'gaji', 'bonus'];
+    protected $fillable = ['ktp', 'nama', 'tempat_lahir', 'tanggal lahir', 'alamat', 'pekerjaan', 'email', 'handphone', 'status', 'tanggungan', 'awal_kerja', 'akhir_kerja', 'gaji', 'bonus'];
     protected $hidden;
 }

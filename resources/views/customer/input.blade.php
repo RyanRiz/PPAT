@@ -13,8 +13,8 @@
                         <div class="col-md-7 form-group">
                             <input type="text" class="form-control @error('ktp') is-invalid @enderror" name="ktp" placeholder="No. KTP">
                             @error('ktp')
-                            <div class="alert alert-danger mt-2 alert-dismissible fade show">
-                                <strong>{{ $message }}</strong>
+                            <div class="invalid-feedback">
+                                {{ $message }}
                             </div>
                             @enderror
                         </div>

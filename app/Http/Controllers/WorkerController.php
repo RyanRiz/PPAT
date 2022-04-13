@@ -42,9 +42,14 @@ class WorkerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            "ktp" => "required|unique:workers,ktp",
             "nama" => "required",
             "tempat_lahir" => "required",
             "tanggal_lahir" => "required",
+            "alamat" => "required",
+            "pekerjaan" => "required",
+            "handphone" => "required",
+            "email" => "required",
             "status" => "required",
             "awal_kerja" => "required",
             "gaji" => "required",
@@ -53,9 +58,14 @@ class WorkerController extends Controller
 
         $input = new Workers;
 
+        $input->ktp = $request->ktp;
         $input->nama = $request->nama;
         $input->tempat_lahir = $request->tempat_lahir;
         $input->tanggal_lahir = $request->tanggal_lahir;
+        $input->alamat = $request->alamat;
+        $input->pekerjaan = $request->pekerjaan;
+        $input->handphone = $request->handphone;
+        $input->email = $request->email;
         $input->status = $request->status;
         $input->tanggungan = $request->tanggungan;
         $input->awal_kerja = $request->awal_kerja;
@@ -109,9 +119,14 @@ class WorkerController extends Controller
     {
         $input = Workers::find($id);
 
+        $input->ktp = $request->ktp;
         $input->nama = $request->nama;
         $input->tempat_lahir = $request->tempat_lahir;
         $input->tanggal_lahir = $request->tanggal_lahir;
+        $input->alamat = $request->alamat;
+        $input->pekerjaan = $request->pekerjaan;
+        $input->handphone = $request->handphone;
+        $input->email = $request->email;
         $input->status = $request->status;
         $input->tanggungan = $request->tanggungan;
         $input->awal_kerja = $request->awal_kerja;

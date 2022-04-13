@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -11,9 +13,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function setting()
     {
-        //
+        return view('profile.setting',[
+            'title' => 'Pengaturan Ganti Password'
+        ]);
     }
 
     /**
@@ -34,7 +38,29 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+
+        $hashedPassword = auth()->user()->password;
+        if (Hash::check($request->current_password , $hashedPassword)) {
+            if (!Hash::check($request->password , $hashedPassword)) {
+
+                $id = auth()->user()->id;
+                $user = User::find($id);
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return back()->with('message','Password Berhasil Diubah');
+            }
+            else{
+                return back()->with('error','Password Baru Tidak Boleh Sama Dengan Yang Lama!');
+            }
+        }
+        else{
+            return back()->with('warning','Password Lama Tidak Sesuai!');
+        }
     }
 
     /**

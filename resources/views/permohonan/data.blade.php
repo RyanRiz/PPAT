@@ -17,6 +17,8 @@
                         <th>Jenis Sertifikat</th>
                         <th>No Sertifikat</th>
                         <th>Penjual</th>
+                        <th>Tanggal Dibuat</th>
+                        <th>Tanggal Deadline</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -29,6 +31,8 @@
                             <td>{{ $data->jenis_sertifikat }}</td>
                             <td>{{ $data->sertifikat }}</td>
                             <td>{{ $customer->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                            <td>{{ date('d-m-Y', strtotime($data->tanggal_permohonan)) }}</td>
+                            <td>{{ date('d-m-Y', strtotime($data->tanggal_deadline)) }}</td>
                             <td>
                                 <div class="d-flex">
                                     <a class="btn btn-secondary me-2" href="{{ route('show.permohonan', $data->id) }}" role="button">Rincian</a>
@@ -45,6 +49,8 @@
                         <th>Jenis Sertifikat</th>
                         <th>No Sertifikat</th>
                         <th>Penjual</th>
+                        <th>Tanggal Dibuat</th>
+                        <th>Tanggal Deadline</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>

@@ -10,13 +10,23 @@
                         <label>No. KTP Pembeli</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" value="{{ old('ktp_pembeli') }}" class="form-control" name="ktp_pembeli" placeholder="No. KTP Pembeli">
+                        <input type="text" class="form-control @error('ktp_pembeli') is-invalid @enderror" name="ktp_pembeli" placeholder="No. KTP Pembeli">
+                        @error('ktp_pembeli')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-md-5">
                         <label>No. KTP Penjual</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" value="{{ old('ktp_penjual') }}" class="form-control" name="ktp_penjual" placeholder="No. KTP Penjual">
+                        <input type="text" class="form-control @error('ktp_penjual') is-invalid @enderror" name="ktp_penjual" placeholder="No. KTP Penjual">
+                        @error('ktp_penjual')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-md-5">
                         <label>Jenis Permohonan</label>
@@ -47,10 +57,10 @@
                         <label>No. Sertifikat</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input type="text" class="form-control @error('ktp') is-invalid @enderror" name="sertifikat" placeholder="No. Sertifikat">
-                        @error('ktp')
-                        <div class="alert alert-danger mt-2 alert-dismissible fade show">
-                            <strong>{{ $message }}</strong>
+                        <input type="text" class="form-control @error('sertifikat') is-invalid @enderror" name="sertifikat" placeholder="No. Sertifikat">
+                        @error('sertifikat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
                         </div>
                         @enderror
                     </div>
@@ -101,6 +111,18 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control" value="{{ old('provinsi') }}" name="provinsi" placeholder="Provinsi">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Dibuat Permohonan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="date" class="form-control" value="{{ old('tanggal_permohonan') }}" name="tanggal_permohonan" placeholder="Tanggal Dibuat Permohonan">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Deadline Permohonan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input type="date" class="form-control" value="{{ old('tanggal_deadline') }}" name="tanggal_deadline" placeholder="Tanggal Deadline Permohonan">
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>
