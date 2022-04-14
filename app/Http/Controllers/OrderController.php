@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
+use App\Models\Workers;
 use App\Models\Customers;
 use App\Models\OrderDetails;
-use App\Models\Orders;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -32,8 +33,10 @@ class OrderController extends Controller
      */
     public function create()
     {
+        $workers = Workers::where('job', 1)->get();
         return view('permohonan.input', [
-            'title' => 'Input Permohonan'
+            'title' => 'Input Permohonan',
+            'workers' => $workers
         ]);
     }
 
@@ -61,7 +64,8 @@ class OrderController extends Controller
             "provinsi" => "required",
             "nilai_transaksi" => "required",
             "tanggal_permohonan" => "required",
-            "tanggal_deadline" => "required"
+            "tanggal_deadline" => "required",
+            "petugas" => "required",
         ]);
 
         $input = new Orders;
@@ -79,6 +83,7 @@ class OrderController extends Controller
         $input->lokasi_objek = $request->lokasi_objek;
         $input->luas_bangunan = $request->luas_bangunan;
         $input->luas_tanah = $request->luas_tanah;
+        $input->petugas = $request->petugas;
         $input->kelurahan = $request->kelurahan;
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
@@ -115,10 +120,12 @@ class OrderController extends Controller
     {
         $data = Orders::find($id);
         $customer = Customers::all();
+        $workers = Workers::where('job', 1)->get();
         return view('permohonan.show', [
             'title' => 'Data Permohonan',
             'data' => $data,
-            'customer' => $customer
+            'customer' => $customer,
+            'workers' => $workers
         ]);
     }
 
@@ -130,13 +137,14 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $datas = Orders::all();
-        $data = $datas->find($id);
+        $data = Orders::find($id);
         $customer = Customers::all();
+        $workers = Workers::where('job', 1)->get();
         return view('permohonan.edit', [
             'title' => 'Data Permohonan',
             'data' => $data,
-            'customer' => $customer
+            'customer' => $customer,
+            'workers' => $workers
         ]);
     }
 
@@ -164,6 +172,7 @@ class OrderController extends Controller
         $input->kelurahan = $request->kelurahan;
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
+        $input->petugas = $request->petugas;
         $input->provinsi = $request->provinsi;
         $input->nilai_transaksi = $nilai_transaksi;
         $input->tanggal_permohonan = $request->tanggal_permohonan;

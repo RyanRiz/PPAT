@@ -77,6 +77,12 @@
                     @enderror
                 </div>
                 <div class="col-md-5">
+                    <label>Petugas</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="text" class="form-control" value="{{ $workers->where('id', $data->petugas)->pluck('nama')->implode('[]', '"') }}" name="petugas" placeholder="Petugas">
+                </div>
+                <div class="col-md-5">
                     <label>NOP</label>
                 </div>
                 <div class="col-md-7 form-group">
@@ -212,6 +218,14 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="pt-4 d-flex justify-content-between">
+                    <div>
+                        <h3 class="text-black">Total Rincian Biaya Permohonan :</h3>
+                    </div>
+                    <div>
+                        <h3 class="text-black">Rp. {{ number_format($data->details()->where('orders_id', $data->id)->sum('biaya'), 0, ',', '.') }}</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -285,27 +299,4 @@
     }
 </script>
 
-<script>
-    var price = document.getElementById('nilai');
-    price.addEventListener('keyup', function(e) {
-        // tambahkan 'Rp.' pada saat form di ketik
-        // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka
-        price.value = formatprice(this.value, 'Rp. ');
-    });
-    /* Fungsi formatprice */
-    function formatprice(angka, prefix) {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split = number_string.split(','),
-            sisa = split[0].length % 3,
-            price = split[0].substr(0, sisa),
-            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-        // tambahkan titik jika yang di input sudah menjadi angka ribuan
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            price += separator + ribuan.join('.');
-        }
-        price = split[1] != undefined ? price + ',' + split[1] : price;
-        return prefix == undefined ? price : (price ? 'Rp. ' + price : '');
-    }
-</script>
 @endpush

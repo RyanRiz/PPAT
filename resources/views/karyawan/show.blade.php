@@ -103,13 +103,19 @@
                     <label>Gaji</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="number" value="{{ $data->gaji }}" min="0" class="form-control" name="gaji" placeholder="Gaji">
+                    <input readonly type="text" value="Rp. {{ number_format($data->gaji, 0, ',', '.') }}" min="0" class="form-control" name="gaji" placeholder="Gaji">
                 </div>
                 <div class="col-md-5">
                     <label>Bonus</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="number" value="{{ $data->bonus }}" min="0" class="form-control" name="bonus" placeholder="Bonus">
+                    <input readonly type="text" value="Rp. {{ number_format($data->bonus, 0, ',', '.') }}" min="0" class="form-control" name="bonus" placeholder="Bonus">
+                </div>
+                <div class="col-md-5">
+                    <label>Status</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="text" name="job" class="form-control" value="{{ ($data->job === 1) ? 'Aktif' : 'Tidak Aktif' }}" placeholder="Status" readonly>
                 </div>
                 <div class="col-md-12 pt-3">
                     <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>

@@ -22,6 +22,7 @@ class Permohonan extends Migration
             $table->string('sertifikat')->unique();
             $table->integer('luas_tanah');
             $table->integer('luas_bangunan');
+            $table->string('petugas');
             $table->string('nop');
             $table->string('lokasi_objek');
             $table->string('kelurahan');

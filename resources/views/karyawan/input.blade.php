@@ -87,13 +87,22 @@
                         <label>Gaji</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input required type="number" min="0" class="form-control" name="gaji" placeholder="Gaji">
+                        <input required type="text" id="gaji" min="0" class="form-control" name="gaji" placeholder="Gaji">
                     </div>
                     <div class="col-md-5">
                         <label>Bonus</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input required type="number" min="0" class="form-control" name="bonus" placeholder="Bonus">
+                        <input required type="text" id="bonus" min="0" class="form-control" name="bonus" placeholder="Bonus">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Status</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <select name="job" class="form-select" aria-label="Default select example">
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                          </select>
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>
@@ -117,3 +126,54 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    var price = document.getElementById('bonus');
+    price.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka
+        price.value = formatprice(this.value, 'Rp. ');
+    });
+    /* Fungsi formatprice */
+    function formatprice(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            price = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            price += separator + ribuan.join('.');
+        }
+        price = split[1] != undefined ? price + ',' + split[1] : price;
+        return prefix == undefined ? price : (price ? 'Rp. ' + price : '');
+    }
+</script>
+
+<script>
+    var harga = document.getElementById('gaji');
+    harga.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatharga() untuk mengubah angka yang di ketik menjadi format angka
+        harga.value = formatharga(this.value, 'Rp. ');
+    });
+    /* Fungsi formatharga */
+    function formatharga(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            harga = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            harga += separator + ribuan.join('.');
+        }
+        harga = split[1] != undefined ? harga + ',' + split[1] : harga;
+        return prefix == undefined ? harga : (harga ? 'Rp. ' + harga : '');
+    }
+</script>
+@endpush
+

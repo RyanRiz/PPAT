@@ -54,9 +54,12 @@ class WorkerController extends Controller
             "awal_kerja" => "required",
             "gaji" => "required",
             "bonus" => "required",
+            "job" => "required",
         ]);
 
         $input = new Workers;
+        $gaji = (int)str_replace([',', '.', 'Rp', ' '], '', $request->gaji);
+        $bonus = (int)str_replace([',', '.', 'Rp', ' '], '', $request->bonus);
 
         $input->ktp = $request->ktp;
         $input->nama = $request->nama;
@@ -69,8 +72,9 @@ class WorkerController extends Controller
         $input->status = $request->status;
         $input->tanggungan = $request->tanggungan;
         $input->awal_kerja = $request->awal_kerja;
-        $input->gaji = $request->gaji;
-        $input->bonus = $request->bonus;
+        $input->gaji = $gaji;
+        $input->bonus = $bonus;
+        $input->job = $request->job;
 
         $input->save();
         return redirect()->route('index.karyawan')->with('message','Data berhasil ditambahkan!');
@@ -119,6 +123,9 @@ class WorkerController extends Controller
     {
         $input = Workers::find($id);
 
+        $gaji = (int)str_replace([',', '.', 'Rp', ' '], '', $request->gaji);
+        $bonus = (int)str_replace([',', '.', 'Rp', ' '], '', $request->bonus);
+
         $input->ktp = $request->ktp;
         $input->nama = $request->nama;
         $input->tempat_lahir = $request->tempat_lahir;
@@ -130,8 +137,9 @@ class WorkerController extends Controller
         $input->status = $request->status;
         $input->tanggungan = $request->tanggungan;
         $input->awal_kerja = $request->awal_kerja;
-        $input->gaji = $request->gaji;
-        $input->bonus = $request->bonus;
+        $input->gaji = $gaji;
+        $input->bonus = $bonus;
+        $input->job = $request->job;
 
         $input->update();
         return redirect()->back()->with('message','Data berhasil diperbarui!');

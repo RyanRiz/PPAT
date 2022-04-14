@@ -57,7 +57,7 @@ class OutcomeController extends Controller
         $input->jumlah_barang = $jumlah;
         $input->harga = $harga;
 
-        $total = $jumlah * $harga;
+        $total = (int)$jumlah * (int)$harga;
         $input->total_harga = $total;
 
         $input->save();
@@ -107,15 +107,15 @@ class OutcomeController extends Controller
     {
         $input = Outcomes::find($id);
 
-        $jumlah = $request->jumlah_barang;
-        $harga = $request->harga;
+        $jumlah = (int)str_replace([',', '.', 'Rp', ' '], '', $request->jumlah_barang);
+        $harga = (int)str_replace([',', '.', 'Rp', ' '], '', $request->harga);
 
         $input->tanggal_pembelian = $request->tanggal_pembelian;
         $input->nama_barang = $request->nama_barang;
         $input->jumlah_barang = $jumlah;
         $input->harga = $harga;
 
-        $total = $jumlah * $harga;
+        $total = (int)$jumlah * (int)$harga;
         $input->total_harga = $total;
 
         $input->update();

@@ -65,6 +65,16 @@
                         @enderror
                     </div>
                     <div class="col-md-5">
+                        <label>Petugas</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <select class="form-select" name="petugas" aria-label="Default select example">
+                            @foreach ($workers as $worker)
+                                <option value="{{ $worker->id }}">{{ $worker->nama }}</option>
+                            @endforeach
+                          </select>
+                    </div>
+                    <div class="col-md-5">
                         <label>NOP</label>
                     </div>
                     <div class="col-md-7 form-group">

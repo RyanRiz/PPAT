@@ -29,6 +29,7 @@ class CreateWorkers extends Migration
             $table->date('akhir_kerja')->nullable();
             $table->string('gaji');
             $table->string('bonus');
+            $table->boolean('job');
             $table->timestamps();
         });
     }

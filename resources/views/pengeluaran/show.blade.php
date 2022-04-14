@@ -47,7 +47,7 @@
                     <label>Harga</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input type="text" readonly value="{{ $data->harga }}" class="form-control" name="harga" placeholder="Harga">
+                    <input type="text" readonly value="Rp. {{ number_format($data->harga, 0, ',', '.') }}" class="form-control" name="harga" placeholder="Harga">
                 </div>
                 <div class="col-md-12 pt-3">
                     <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>
