@@ -29,7 +29,8 @@ class AdminController extends Controller
             'orders' => $orders,
             'datas' => $datas,
             'customers' => $customers,
-            'deadlines' => $deadlines
+            'deadlines' => $deadlines,
+            'months' => $months
         ]);
     }
 }

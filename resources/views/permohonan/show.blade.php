@@ -83,12 +83,6 @@
                     <input readonly type="text" class="form-control" value="{{ $data->nop }}" name="nop" placeholder="NOP">
                 </div>
                 <div class="col-md-5">
-                    <label>Lokasi Objek</label>
-                </div>
-                <div class="col-md-7 form-group">
-                    <textarea readonly class="form-control" name="lokasi_objek" placeholder="Lokasi Objek">{{ $data->lokasi_objek }}</textarea>
-                </div>
-                <div class="col-md-5">
                     <label>Luas Bangunan</label>
                 </div>
                 <div class="col-md-7 form-group">
@@ -99,6 +93,12 @@
                 </div>
                 <div class="col-md-7 form-group">
                     <input readonly type="text" class="form-control" value="{{ $data->luas_tanah }}" name="luas_tanah" placeholder="Luas Tanah">
+                </div>
+                <div class="col-md-5">
+                    <label>Lokasi Objek</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <textarea readonly class="form-control" name="lokasi_objek" placeholder="Lokasi Objek">{{ $data->lokasi_objek }}</textarea>
                 </div>
                 <div class="col-md-5">
                     <label>Kelurahan</label>

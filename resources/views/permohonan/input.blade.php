@@ -71,12 +71,6 @@
                         <input type="text" class="form-control" value="{{ old('nop') }}" name="nop" placeholder="NOP">
                     </div>
                     <div class="col-md-5">
-                        <label>Lokasi Objek</label>
-                    </div>
-                    <div class="col-md-7 form-group">
-                        <textarea class="form-control" name="lokasi_objek" placeholder="Lokasi Objek"></textarea>
-                    </div>
-                    <div class="col-md-5">
                         <label>Luas Bangunan</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -87,6 +81,12 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control" value="{{ old('luas_tanah') }}" name="luas_tanah" placeholder="Luas Tanah">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Lokasi Objek</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <textarea class="form-control" name="lokasi_objek" placeholder="Lokasi Objek"></textarea>
                     </div>
                     <div class="col-md-5">
                         <label>Kelurahan</label>

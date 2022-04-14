@@ -74,16 +74,17 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-auto gx-3">
+        <div class="mx-auto gx-3">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Permohonan Terbaru</h5>
+                        <h5><i class="mdi mdi-archive-plus"></i> Permohonan Terbaru</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="dataNew">
                             <thead class="bg-primary text-white">
                                 <tr>
+                                    <th>No.</th>
                                     <th>Pembeli</th>
                                     <th>Jenis Permohonan</th>
                                     <th>Jenis Sertifikat</th>
@@ -93,6 +94,7 @@
                             <tbody>
                                 @foreach ($datas as $number => $data)
                                     <tr>
+                                        <td>{{ $number+1 }}</td>
                                         <td>{{ $customers->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
                                         <td>{{ $data->jenis_permohonan }}</td>
                                         <td>{{ $data->jenis_sertifikat }}</td>
@@ -107,25 +109,29 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Pengingat Deadline</h5>
+                        <h5><i class="mdi mdi-bell"></i> Pengingat Deadline</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="dataNotice">
                             <thead class="bg-primary text-white">
                                 <tr>
+                                    <th>No.</th>
                                     <th>Pembeli</th>
                                     <th>Jenis Permohonan</th>
-                                    <th>Tanggal Deadline</th>
                                     <th>Penjual</th>
+                                    <th>Tanggal Deadline</th>
+                                    <th>Sisa Hari</th>
                                 </tr>
                             </thead>
                             <tbody class="text-black">
                                 @foreach ($deadlines as $number => $deadline)
                                     <tr>
+                                        <td>{{ $number+1 }}</td>
                                         <td>{{ $customers->where('ktp', $deadline->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
                                         <td>{{ $deadline->jenis_permohonan }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($deadline->tanggal_deadline)) }}</td>
                                         <td>{{ $customers->where('ktp', $deadline->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($deadline->tanggal_deadline)) }}</td>
+                                        <td>{{ $months->parse($deadline->tanggal_deadline)->diffForHumans() }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
