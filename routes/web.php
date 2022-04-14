@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -61,6 +62,9 @@ Route::delete('/data-permohonan/{data:id}/delete', [OrderController::class, 'des
 // Detail Permohonan
 Route::post('/data-permohonan/{data:id}/store-detail', [OrderController::class, 'store_detail'])->name('store.detail');
 Route::delete('/data-permohonan/{data:id}/delete-detail', [OrderController::class, 'destroy_detail'])->name('delete.detail');
+
+// Export
+Route::get('/data-permohonan/{data:id}/print', [ExportController::class, 'cetak'])->name('print.permohonan');
 
 // Pengeluaran
 Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('index.pengeluaran');

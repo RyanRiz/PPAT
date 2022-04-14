@@ -12,6 +12,16 @@
                     </div>
                     <div>
                         <div class="d-flex">
+                            <div class="dropdown pe-2">
+                                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-file-download"></i>
+                                    Export
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{{ route('print.permohonan', $data->id) }}">PDF</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
                             <div class="pe-2">
                                 <a class="btn btn-secondary" href="{{ route('edit.permohonan', $data->id) }}" role="button"><i class="mdi mdi-pencil-box"></i>
                                     Sunting
@@ -113,6 +123,12 @@
                 </div>
                 <div class="col-md-7 form-group">
                     <input readonly type="text" class="form-control" value="{{ $data->provinsi }}" name="provinsi" placeholder="Provinsi">
+                </div>
+                <div class="col-md-5">
+                    <label>Nilai Transaksi</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly id="nilai" type="text" class="form-control" value="Rp. {{ number_format($data->nilai_transaksi, 0, ',', '.') }}" name="nilai_transaksi" placeholder="Nilai Transaksi">
                 </div>
                 <div class="col-md-5">
                     <label>Tanggal Dibuat Permohonan</label>
@@ -247,6 +263,30 @@
 
 <script>
     var price = document.getElementById('biaya');
+    price.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka
+        price.value = formatprice(this.value, 'Rp. ');
+    });
+    /* Fungsi formatprice */
+    function formatprice(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            price = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            price += separator + ribuan.join('.');
+        }
+        price = split[1] != undefined ? price + ',' + split[1] : price;
+        return prefix == undefined ? price : (price ? 'Rp. ' + price : '');
+    }
+</script>
+
+<script>
+    var price = document.getElementById('nilai');
     price.addEventListener('keyup', function(e) {
         // tambahkan 'Rp.' pada saat form di ketik
         // gunakan fungsi formatprice() untuk mengubah angka yang di ketik menjadi format angka

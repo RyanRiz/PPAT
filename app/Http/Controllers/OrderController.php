@@ -59,6 +59,7 @@ class OrderController extends Controller
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required",
+            "nilai_transaksi" => "required",
             "tanggal_permohonan" => "required",
             "tanggal_deadline" => "required"
         ]);
@@ -67,6 +68,7 @@ class OrderController extends Controller
 
         $ktp_pembeli = $request->ktp_pembeli;
         $ktp_penjual = $request->ktp_penjual;
+        $nilai_transaksi = (int)str_replace([',', '.', 'Rp', ' '], '', $request->nilai_transaksi);
 
         $input->ktp_pembeli = $ktp_pembeli;
         $input->ktp_penjual = $ktp_penjual;
@@ -81,6 +83,7 @@ class OrderController extends Controller
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
         $input->provinsi = $request->provinsi;
+        $input->nilai_transaksi = $nilai_transaksi;
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = false;
@@ -149,6 +152,8 @@ class OrderController extends Controller
         $datas = Orders::all();
         $input = $datas->find($id);
 
+        $nilai_transaksi = (int)str_replace([',', '.', 'Rp', ' '], '', $request->nilai_transaksi);
+
         $input->jenis_permohonan = $request->jenis_permohonan;
         $input->jenis_sertifikat = $request->jenis_sertifikat;
         $input->sertifikat = $request->sertifikat;
@@ -160,6 +165,7 @@ class OrderController extends Controller
         $input->kecamatan = $request->kecamatan;
         $input->kabupaten = $request->kabupaten;
         $input->provinsi = $request->provinsi;
+        $input->nilai_transaksi = $nilai_transaksi;
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = $request->boolean('status');
