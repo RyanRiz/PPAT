@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->char('ktp', 16)->unique();
             $table->string('nama');
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('telepon');
             $table->string('pekerjaan');

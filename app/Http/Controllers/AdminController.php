@@ -20,13 +20,15 @@ class AdminController extends Controller
         $orders = Orders::all();
         $customers = Customers::all();
         $months = Carbon::now();
+        $order = Orders::whereMonth('tanggal_permohonan', $months->month)->count();
         $outcomes = Outcomes::whereMonth('tanggal_pembelian', $months->month)->sum('total_harga');
-        $datas = Orders::take(5)->get();
-        $deadlines = Orders::where('confirmed', 0)->whereDate('tanggal_deadline', '>', Carbon::now())->orderBy('tanggal_deadline', 'ASC')->take(5)->get();
+        $datas = Orders::latest()->take(5)->get();
+        $deadlines = Orders::where('confirmed', 0)->whereDate('tanggal_deadline', '>=', Carbon::now())->orderBy('tanggal_deadline', 'ASC')->take(5)->get();
         return view('home', [
             'title' => 'Dashboard',
             'outcomes' => $outcomes,
             'orders' => $orders,
+            'order' => $order,
             'datas' => $datas,
             'customers' => $customers,
             'deadlines' => $deadlines,

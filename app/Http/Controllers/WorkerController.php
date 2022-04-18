@@ -14,6 +14,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
+        $this->authorize('isAdmin');
         $data = Workers::all();
         return view('karyawan.data', [
             'title' => 'Data Karyawan',
@@ -28,6 +29,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('karyawan.input', [
             'title' => 'Input Karyawan'
         ]);
@@ -41,6 +43,7 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $this->validate($request, [
             "ktp" => "required|unique:workers,ktp",
             "nama" => "required",
@@ -88,8 +91,8 @@ class WorkerController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('isAdmin');
         $data = Workers::find($id);
-
         return view('karyawan.show', [
             "title" => "Data Karyawan",
             "data" => $data
@@ -104,8 +107,8 @@ class WorkerController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $data = Workers::find($id);
-
         return view('karyawan.edit', [
             "title" => "Data Karyawan",
             "data" => $data
@@ -121,6 +124,7 @@ class WorkerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $input = Workers::find($id);
 
         $gaji = (int)str_replace([',', '.', 'Rp', ' '], '', $request->gaji);
@@ -153,6 +157,7 @@ class WorkerController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $data = Workers::findOrFail($id);
         $data->delete();
         return redirect()->route('index.karyawan')->with('message','Data berhasil dihapus!');

@@ -101,6 +101,22 @@
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
+                    <i class="bi bi-file-bar-graph-fill"></i>
+                    <span>Laporan</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item {{  ($title === "Data Pengeluaran Bulanan") ? 'active' : '' }}">
+                        <a href="{{ route('index.monthly') }}">Pengeluaran Bulanan</a>
+                    </li>
+                </ul>
+            </li>
+
+            @auth
+                @if (Auth::user()->roles == 'admin')
+
+            <li
+                class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
                     <i class="bi bi-person-fill"></i>
                     <span>Karyawan</span>
                 </a>
@@ -131,6 +147,8 @@
                     </li>
                 </ul>
             </li>
+                @endif
+            @endauth
 
     </div>
     <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

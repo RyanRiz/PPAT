@@ -138,10 +138,13 @@
                         <input type="date" class="form-control" value="{{ $data->tanggal_deadline }}" name="tanggal_deadline" placeholder="Tanggal Deadline Permohonan">
                     </div>
                     <div class="col-md-5">
-                        <label for="flexCheckChecked">Selesai</label>
+                        <label>Status</label>
                     </div>
                     <div class="col-md-7 form-group">
-                        <input class="form-check-input" {{  ($data->confirmed === 1) ? 'checked' : '' }} name="status" type="checkbox" value="true" id="flexCheckChecked" @if ($data->confirmed == "true") checked @endif>
+                        <select name="confirmed" class="form-select" aria-label="Default select example">
+                            <option value="1" @if ($data->confirmed == 1) selected @endif>Selesai</option>
+                            <option value="0" @if ($data->confirmed == 0) selected @endif>Belum Selesai</option>
+                          </select>
                     </div>
                     <div class="pt-3 col-sm-12 d-flex justify-content-between">
                         <div>

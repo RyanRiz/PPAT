@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Outcomes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OutcomeController extends Controller
 {
@@ -17,6 +19,18 @@ class OutcomeController extends Controller
         return view('pengeluaran.data', [
             'title' => 'Data Pengeluaran',
             "datas" => Outcomes::all()
+        ]);
+    }
+
+    public function report()
+    {
+        $data = Outcomes::select(DB::raw("(SUM(total_harga)) as total"),
+                DB::raw("DATE_FORMAT(tanggal_pembelian, '%M %Y') as months"))
+                ->groupBy('months')
+                ->get();
+        return view('laporan.data', [
+            'title' => 'Data Pengeluaran Bulanan',
+            "datas" => $data,
         ]);
     }
 

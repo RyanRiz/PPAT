@@ -17,9 +17,19 @@
                                     Export
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{{ route('print.permohonan', $data->id) }}">PDF</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.pernyataan', $data->id) }}">Surat Pernyataan Beli Tanah</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.kuasa', $data->id) }}">Surat Kuasa</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.npwp', $data->id) }}">Surat Pernyataan Tidak Memiliki NPWP</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('print.pajak', $data->id) }}">Pajak</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.penghasilan', $data->id) }}">Pajak Penghasilan</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.tidak', $data->id) }}">Surat Pernyataan Tidak Menggunakan NPWP</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.pengajuan', $data->id) }}">Surat Pengajuan</a></li>
+                                    @if ($data->jenis_sertifikat !== "SHP")
+                                    <li><a class="dropdown-item" href="{{ route('show.pengecekan', $data->id) }}">Surat Pengecekan</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.nama', $data->id) }}">Surat Kuasa Balik Nama</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.menerima', $data->id) }}">Surat Pernyataan Telah Menerima</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('show.order', $data->id) }}">Surat Permohonan ke Kantor Pertanahan</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="pe-2">
@@ -152,7 +162,7 @@
                     <label>Status</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" value="{{ ($data->confirmed === 1) ? 'Selesai' : 'Belum Selesai' }}" name="provinsi" placeholder="Provinsi">
+                    <input readonly type="text" class="form-control" value="{{ ($data->confirmed === 1) ? 'Selesai' : 'Belum Selesai' }}" name="confirmed" placeholder="confirmed">
                 </div>
                 <div class="col-md-12 pt-3">
                     <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>

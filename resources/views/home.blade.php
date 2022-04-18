@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Permohonan</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $orders->count() }}</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $order }}</h6>
                                 </div>
                             </div>
                         </div>

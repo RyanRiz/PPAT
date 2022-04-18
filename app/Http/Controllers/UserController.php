@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('isAdmin');
         return view('user.data', [
             'title' => 'Data Pengguna',
             'datas' => User::all()
@@ -28,6 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('user.input', [
             'title' => 'Input Pengguna'
         ]);
@@ -41,6 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $this->validate($request, [
             "username" => "required|unique:users,username",
             "nama" => "required",
@@ -67,6 +70,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('isAdmin');
         $datas = User::FindorFail($id);
         $roles = $datas->roles;
 
@@ -85,8 +89,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $datas = User::FindorFail($id);
-
         return view('user.edit', [
             'title' => 'Input Pengguna',
             'data' => $datas
@@ -102,6 +106,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $input = User::findorFail($id);
 
         if ($request->has('password')) {
@@ -126,6 +131,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $data = User::findOrFail($id);
         $data->delete();
         return redirect()->route('index.user')->with('message','Data berhasil dihapus!');

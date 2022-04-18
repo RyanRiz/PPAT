@@ -39,6 +39,12 @@
                         <input readonly type="text" value="{{ $data->nama }}" class="form-control" name="nama" placeholder="Nama Lengkap">
                     </div>
                     <div class="col-md-5">
+                        <label>Tempat Lahir</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input readonly type="text" value="{{ $data->tempat_lahir }}" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir">
+                    </div>
+                    <div class="col-md-5">
                         <label>Tanggal Lahir</label>
                     </div>
                     <div class="col-md-7 form-group">

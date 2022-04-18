@@ -177,7 +177,7 @@ class OrderController extends Controller
         $input->nilai_transaksi = $nilai_transaksi;
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
-        $input->confirmed = $request->boolean('status');
+        $input->confirmed = $request->confirmed;
 
         $input->save();
         return redirect()->back()->with('message','Data berhasil diubah!');
