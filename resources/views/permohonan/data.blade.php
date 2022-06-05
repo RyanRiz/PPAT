@@ -12,11 +12,9 @@
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>No</th>
-                        <th>Pembeli</th>
+                        <th>Pihak Pertama</th>
                         <th>Jenis Permohonan</th>
-                        <th>Jenis Sertifikat</th>
-                        <th>No Sertifikat</th>
-                        <th>Penjual</th>
+                        <th>Pihak Kedua</th>
                         <th>Tanggal Dibuat</th>
                         <th>Tanggal Deadline</th>
                         <th>Opsi</th>
@@ -28,8 +26,6 @@
                             <td>{{ $number +1 }}</td>
                             <td>{{ $customer->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
                             <td>{{ $data->jenis_permohonan }}</td>
-                            <td>{{ $data->jenis_sertifikat }}</td>
-                            <td>{{ $data->sertifikat }}</td>
                             <td>{{ $customer->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
                             <td>{{ date('d-m-Y', strtotime($data->tanggal_permohonan)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($data->tanggal_deadline)) }}</td>
@@ -44,11 +40,9 @@
                 <tfoot class="bg-primary text-white">
                     <tr>
                         <th>No</th>
-                        <th>Pembeli</th>
+                        <th>Pihak Pertama</th>
                         <th>Jenis Permohonan</th>
-                        <th>Jenis Sertifikat</th>
-                        <th>No Sertifikat</th>
-                        <th>Penjual</th>
+                        <th>Pihak Kedua</th>
                         <th>Tanggal Dibuat</th>
                         <th>Tanggal Deadline</th>
                         <th>Opsi</th>

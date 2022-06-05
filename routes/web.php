@@ -64,6 +64,15 @@ Route::delete('/data-permohonan/{data:id}/delete', [OrderController::class, 'des
 Route::post('/data-permohonan/{data:id}/store-detail', [OrderController::class, 'store_detail'])->name('store.detail');
 Route::delete('/data-permohonan/{data:id}/delete-detail', [OrderController::class, 'destroy_detail'])->name('delete.detail');
 
+// Sertifikat Permohonan
+Route::post('/data-permohonan/{data:id}/store-certificate', [OrderController::class, 'store_certificate'])->name('store.certificate');
+
+// Tempat Permohonan
+Route::post('/data-permohonan/{data:id}/store-place', [OrderController::class, 'store_place'])->name('store.place');
+
+// Transaksi Permohonan
+Route::post('/data-permohonan/{data:id}/store-transaction', [OrderController::class, 'store_transaction'])->name('store.transaction');
+
 // Export
 Route::post('/data-permohonan/{data:id}/print-pernyataan', [ExportController::class, 'cetak_pernyataan'])->name('print.pernyataan');
 Route::get('/data-permohonan/{data:id}/show-pernyataan', [ExportController::class, 'pernyataan'])->name('show.pernyataan');

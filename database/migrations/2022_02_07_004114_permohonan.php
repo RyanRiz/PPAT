@@ -18,18 +18,7 @@ class Permohonan extends Migration
             $table->integer('ktp_pembeli');
             $table->integer('ktp_penjual');
             $table->string('jenis_permohonan');
-            $table->string('jenis_sertifikat');
-            $table->string('sertifikat')->unique();
-            $table->integer('luas_tanah');
-            $table->integer('luas_bangunan');
             $table->string('petugas');
-            $table->string('nop');
-            $table->string('lokasi_objek');
-            $table->string('kelurahan');
-            $table->string('kecamatan');
-            $table->string('kabupaten');
-            $table->string('provinsi');
-            $table->string('nilai_transaksi');
             $table->date('tanggal_permohonan');
             $table->date('tanggal_deadline');
             $table->boolean('confirmed');

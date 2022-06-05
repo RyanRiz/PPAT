@@ -43,7 +43,7 @@
                             <option value="Roya">Roya</option>
                           </select>
                     </div>
-                    <div class="col-md-5">
+                    {{-- <div class="col-md-5">
                         <label>Jenis Sertifikat</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -63,7 +63,7 @@
                             {{ $message }}
                         </div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="col-md-5">
                         <label>Petugas</label>
                     </div>
@@ -74,7 +74,7 @@
                             @endforeach
                           </select>
                     </div>
-                    <div class="col-md-5">
+                    {{-- <div class="col-md-5">
                         <label>NOP</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input id="nilai" type="text" class="form-control" value="{{ old('nilai_transaksi') }}" name="nilai_transaksi" placeholder="Nilai Transaksi">
-                    </div>
+                    </div> --}}
                     <div class="col-md-5">
                         <label>Tanggal Dibuat Permohonan</label>
                     </div>

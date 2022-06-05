@@ -97,7 +97,9 @@
                                         <td>{{ $number+1 }}</td>
                                         <td>{{ $customers->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
                                         <td>{{ $data->jenis_permohonan }}</td>
-                                        <td>{{ $data->jenis_sertifikat }}</td>
+                                        @foreach ($certificates as $certificate)
+                                            <td>{{ $certificate->jenis_sertifikat }}</td>
+                                        @endforeach
                                         <td>{{ $customers->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
                                     </tr>
                                 @endforeach
