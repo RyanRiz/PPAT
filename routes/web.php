@@ -1,17 +1,19 @@
 <?php
 
+use App\Exports\ExcelExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\OutcomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ExportController;
-use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,11 @@ Route::get('/', [AdminController::class, 'index'])->name('dashboard')->middlewar
 Route::get('/setting', [ProfileController::class, 'setting'])->name('setting')->middleware('auth');
 Route::post('/setting', [ProfileController::class, 'store'])->name('store.setting')->middleware('auth');
 
+// Import Export Excel
+Route::get('/export', [ExcelController::class, 'export'])->name('export');
+Route::post('/import', [ExcelController::class, 'import'])->name('import');
+Route::get('/database', [ExcelController::class, 'index'])->name('database');
+
 // Customer
 Route::get('/data-customer', [CustomerController::class, 'index'])->name('index.customer');
 Route::get('/input-customer', [CustomerController::class, 'create'])->name('form.customer');
@@ -63,38 +70,6 @@ Route::delete('/data-permohonan/{data:id}/delete', [OrderController::class, 'des
 // Detail Permohonan
 Route::post('/data-permohonan/{data:id}/store-detail', [OrderController::class, 'store_detail'])->name('store.detail');
 Route::delete('/data-permohonan/{data:id}/delete-detail', [OrderController::class, 'destroy_detail'])->name('delete.detail');
-
-// Sertifikat Permohonan
-Route::post('/data-permohonan/{data:id}/store-certificate', [OrderController::class, 'store_certificate'])->name('store.certificate');
-
-// Tempat Permohonan
-Route::post('/data-permohonan/{data:id}/store-place', [OrderController::class, 'store_place'])->name('store.place');
-
-// Transaksi Permohonan
-Route::post('/data-permohonan/{data:id}/store-transaction', [OrderController::class, 'store_transaction'])->name('store.transaction');
-
-// Export
-Route::post('/data-permohonan/{data:id}/print-pernyataan', [ExportController::class, 'cetak_pernyataan'])->name('print.pernyataan');
-Route::get('/data-permohonan/{data:id}/show-pernyataan', [ExportController::class, 'pernyataan'])->name('show.pernyataan');
-Route::post('/data-permohonan/{data:id}/print-kuasa', [ExportController::class, 'cetak_kuasa'])->name('print.kuasa');
-Route::get('/data-permohonan/{data:id}/show-kuasa', [ExportController::class, 'kuasa'])->name('show.kuasa');
-Route::post('/data-permohonan/{data:id}/print-npwp', [ExportController::class, 'cetak_npwp'])->name('print.npwp');
-Route::get('/data-permohonan/{data:id}/show-npwp', [ExportController::class, 'npwp'])->name('show.npwp');
-Route::get('/data-permohonan/{data:id}/show-pajak', [ExportController::class, 'cetak_pajak'])->name('print.pajak');
-Route::post('/data-permohonan/{data:id}/print-penghasilan', [ExportController::class, 'cetak_penghasilan'])->name('print.penghasilan');
-Route::get('/data-permohonan/{data:id}/show-penghasilan', [ExportController::class, 'penghasilan'])->name('show.penghasilan');
-Route::post('/data-permohonan/{data:id}/print-tidak', [ExportController::class, 'cetak_tidak'])->name('print.tidak');
-Route::get('/data-permohonan/{data:id}/show-tidak', [ExportController::class, 'tidak'])->name('show.tidak');
-Route::post('/data-permohonan/{data:id}/print-pengajuan', [ExportController::class, 'cetak_pengajuan'])->name('print.pengajuan');
-Route::get('/data-permohonan/{data:id}/show-pengajuan', [ExportController::class, 'pengajuan'])->name('show.pengajuan');
-Route::post('/data-permohonan/{data:id}/print-pengecekan', [ExportController::class, 'cetak_pengecekan'])->name('print.pengecekan');
-Route::get('/data-permohonan/{data:id}/show-pengecekan', [ExportController::class, 'pengecekan'])->name('show.pengecekan');
-Route::post('/data-permohonan/{data:id}/print-nama', [ExportController::class, 'cetak_nama'])->name('print.nama');
-Route::get('/data-permohonan/{data:id}/show-nama', [ExportController::class, 'nama'])->name('show.nama');
-Route::post('/data-permohonan/{data:id}/print-menerima', [ExportController::class, 'cetak_menerima'])->name('print.menerima');
-Route::get('/data-permohonan/{data:id}/show-menerima', [ExportController::class, 'menerima'])->name('show.menerima');
-Route::post('/data-permohonan/{data:id}/print-order', [ExportController::class, 'cetak_order'])->name('print.order');
-Route::get('/data-permohonan/{data:id}/show-order', [ExportController::class, 'order'])->name('show.order');
 
 // Pengeluaran
 Route::get('/data-pengeluaran', [OutcomeController::class, 'index'])->name('index.pengeluaran');

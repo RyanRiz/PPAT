@@ -25,7 +25,6 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="py-3">Main</h3>
                 <div class="col-md-5">
                     <label>Nama Pihak Pertama</label>
                 </div>
@@ -74,161 +73,152 @@
                 <div class="col-md-7 form-group">
                     <input readonly type="text" class="form-control" value="{{ ($data->confirmed === 1) ? 'Selesai' : 'Belum Selesai' }}" name="confirmed" placeholder="confirmed">
                 </div>
-                <div class="col-md-12 pt-3">
-                    <p class="text-end fst-italic">Terakhir diperbarui {{ $data->updated_at }}</p>
-                </div>
-
-                <h3 class="py-3">Certificate</h3>
                 <div class="col-md-5">
                     <label>Jenis Sertifikat</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" name="jenis_sertifikat" value="{{ $certificate->jenis_sertifikat }}" class="form-control">
+                    <input readonly type="text" name="jenis_sertifikat" @if (!empty($data->jenis_sertifikat)) value="{{ $data->jenis_sertifikat }}" @endif class="form-control">
                 </div>
                 <div class="col-md-5">
                     <label>No. Sertifikat</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" value="{{ $certificate->sertifikat }}" class="form-control name="sertifikat" placeholder="No. Sertifikat">
+                    <input readonly type="text"  @if (!empty($data->ertifikat)) value="{{ $data->sertifikat }}" @endif class="form-control name="sertifikat" placeholder="No. Sertifikat">
                 </div>
                 <div class="col-md-5">
                     <label>NOP</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" value="{{ $certificate->nop }}" name="nop" placeholder="NOP">
+                    <input readonly type="text" class="form-control"  @if (!empty($data->nop)) value="{{ $data->nop }}" @endif name="nop" placeholder="NOP">
                 </div>
                 <div class="col-md-5">
                     <label>NIB</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($certificate->nib)) value="{{ $certificate->nib }}" @endif name="nib" placeholder="NIB">
+                    <input readonly type="text" class="form-control" @if (!empty($data->nib)) value="{{ $data->nib }}" @endif name="nib" placeholder="NIB">
                 </div>
                 <div class="col-md-5">
                     <label>No Ukur</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($certificate->no_ukur)) value="{{ $certificate->no_ukur }}" @endif name="no_ukur" placeholder="No Ukur">
+                    <input readonly type="text" class="form-control" @if (!empty($data->no_ukur)) value="{{ $data->no_ukur }}" @endif name="no_ukur" placeholder="No Ukur">
                 </div>
                 <div class="col-md-5">
                     <label>Tanggal Ukur</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="date" class="form-control" @if (!empty($certificate->tanggal_ukur)) value="{{ $certificate->tanggal_ukur }}" @endif name="tanggal_ukur" placeholder="Tanggal Ukur">
+                    <input readonly type="date" class="form-control" @if (!empty($data->tanggal_ukur)) value="{{ $data->tanggal_ukur }}" @endif name="tanggal_ukur" placeholder="Tanggal Ukur">
                 </div>
-                <div class="col-md-12 pt-3">
-                    <p class="text-end fst-italic">Terakhir diperbarui @if (!empty($certificate->updated_at)) {{ $certificate->updated_at }} @else Null @endif</p>
-                </div>
-
-                <h3 class="py-3">Place</h3>
                 <div class="col-md-5">
                     <label>Luas Bangunan</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->luas_bangunan)) value="{{ $place->luas_bangunan }}" @endif name="luas_bangunan" placeholder="Luas Bangunan">
+                    <input readonly type="text" class="form-control" @if (!empty($data->luas_bangunan)) value="{{ $data->luas_bangunan }}" @endif name="luas_bangunan" placeholder="Luas Bangunan">
                 </div>
                 <div class="col-md-5">
                     <label>Luas Tanah</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->luas_tanah)) value="{{ $place->luas_tanah }}" @endif name="luas_tanah" placeholder="Luas Tanah">
+                    <input readonly type="text" class="form-control" @if (!empty($data->luas_tanah)) value="{{ $data->luas_tanah }}" @endif name="luas_tanah" placeholder="Luas Tanah">
                 </div>
                 <div class="col-md-5">
                     <label>Lokasi Objek</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <textarea readonly class="form-control" name="lokasi_objek" placeholder="Lokasi Objek">@if (!empty($place->lokasi_objek)) {{ $place->lokasi_objek }} @endif</textarea>
+                    <textarea readonly class="form-control" name="lokasi_objek" placeholder="Lokasi Objek">@if (!empty($data->lokasi_objek)) {{ $data->lokasi_objek }} @endif</textarea>
                 </div>
                 <div class="col-md-5">
                     <label>Kav</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->kav)) value="{{ $place->kav }}" @endif name="kav" placeholder="Kav">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kav)) value="{{ $data->kav }}" @endif name="kav" placeholder="Kav">
                 </div>
                 <div class="col-md-5">
                     <label>Kelurahan</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->kelurahan)) value="{{ $place->kelurahan }}" @endif name="kelurahan" placeholder="Kelurahan">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kelurahan)) value="{{ $data->kelurahan }}" @endif name="kelurahan" placeholder="Kelurahan">
                 </div>
                 <div class="col-md-5">
                     <label>Kecamatan</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->kecamatan)) value="{{ $place->kecamatan }}" @endif name="kecamatan" placeholder="Kecamatan">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kecamatan)) value="{{ $data->kecamatan }}" @endif name="kecamatan" placeholder="Kecamatan">
                 </div>
                 <div class="col-md-5">
                     <label>Kabupaten/Kota</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->kabupaten)) value="{{ $place->kabupaten }}" @endif name="kabupaten" placeholder="Kabupaten">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kabupaten)) value="{{ $data->kabupaten }}" @endif name="kabupaten" placeholder="Kabupaten">
                 </div>
                 <div class="col-md-5">
                     <label>Provinsi</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($place->provinsi)) value="{{ $place->provinsi }}" @endif name="provinsi" placeholder="Provinsi">
+                    <input readonly type="text" class="form-control" @if (!empty($data->provinsi)) value="{{ $data->provinsi }}" @endif name="provinsi" placeholder="Provinsi">
                 </div>
-                <div class="col-md-12 pt-3">
-                    <p class="text-end fst-italic">Terakhir diperbarui @if (!empty($place->updated_at)) {{ $place->updated_at }} @else Null @endif</p>
-                </div>
-
-                <h3 class="py-3">Transaction</h3>
                 <div class="col-md-5">
                     <label>Nilai Transaksi</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly id="nilai" type="text" class="form-control" @if (!empty($transaction->keterangan)) value="Rp. {{ number_format($data->nilai_transaksi, 0, ',', '.') }}" @endif name="nilai_transaksi" placeholder="Nilai Transaksi">
+                    <input readonly id="nilai" type="text" class="form-control" @if (!empty($data->keterangan)) value="Rp. {{ number_format($data->nilai_transaksi, 0, ',', '.') }}" @endif name="nilai_transaksi" placeholder="Nilai Transaksi">
                 </div>
                 <div class="col-md-5">
                     <label>Terbilang</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->terbilang)) value="{{ $transaction->terbilang }}" @endif name="terbilang" placeholder="Terbilang">
+                    <input readonly type="text" class="form-control" @if (!empty($data->terbilang)) value="{{ $data->terbilang }}" @endif name="terbilang" placeholder="Terbilang">
                 </div>
                 <div class="col-md-5">
                     <label>Tanggal Bayar BPHTB</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->tanggal_bayar_bphtb)) value="{{ $transaction->tanggal_bayar_bphtb }}" @endif name="tanggal_bayar_bphtb" placeholder="Tanggal Bayar BPHTB">
+                    <input readonly type="text" class="form-control" @if (!empty($data->tanggal_bayar_bphtb)) value="{{ $data->tanggal_bayar_bphtb }}" @endif name="tanggal_bayar_bphtb" placeholder="Tanggal Bayar BPHTB">
                 </div>
                 <div class="col-md-5">
                     <label>Jumlah Bayar BPHTB</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->jumlah_bayar_bphtb)) value="{{ $transaction->jumlah_bayar_bphtb }}" @endif name="jumlah_bayar_bphtb" placeholder="Jumlah Bayar BPHTB">
+                    <input readonly type="text" class="form-control" @if (!empty($data->jumlah_bayar_bphtb)) value="Rp. {{ number_format($data->jumlah_bayar_bphtb, 0, ',', '.') }}" @endif name="jumlah_bayar_bphtb" placeholder="Jumlah Bayar BPHTB">
                 </div>
                 <div class="col-md-5">
                     <label>Kode Bayar BPHTB</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->kode_bayar_bphtb)) value="{{ $transaction->kode_bayar_bphtb }}" @endif name="kode_bayar_bphtb" placeholder="Kode Bayar BPHTB">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kode_bayar_bphtb)) value="{{ $data->kode_bayar_bphtb }}" @endif name="kode_bayar_bphtb" placeholder="Kode Bayar BPHTB">
                 </div>
                 <div class="col-md-5">
                     <label>Tanggal Bayar PPH</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->tanggal_bayar_pph)) value="{{ $transaction->tanggal_bayar_pph }}" @endif name="tanggal_bayar_pph" placeholder="Tanggal Bayar PPH">
+                    <input readonly type="text" class="form-control" @if (!empty($data->tanggal_bayar_pph)) value="{{ $data->tanggal_bayar_pph }}" @endif name="tanggal_bayar_pph" placeholder="Tanggal Bayar PPH">
                 </div>
                 <div class="col-md-5">
                     <label>Jumlah Bayar PPH</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->jumlah_bayar_pph)) value="{{ $transaction->jumlah_bayar_pph }}" @endif name="jumlah_bayar_pph" placeholder="Jumlah Bayar PPH">
+                    <input readonly type="text" class="form-control" @if (!empty($data->jumlah_bayar_pph)) value="Rp. {{ number_format($data->jumlah_bayar_pph, 0, ',', '.') }}" @endif name="jumlah_bayar_pph" placeholder="Jumlah Bayar PPH">
                 </div>
                 <div class="col-md-5">
                     <label>NTPN</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->ntpn)) value="{{ $transaction->ntpn }}" @endif name="ntpn" placeholder="NTPN">
+                    <input readonly type="text" class="form-control" @if (!empty($data->ntpn)) value="{{ $data->ntpn }}" @endif name="ntpn" placeholder="NTPN">
+                </div>
+                <div class="col-md-5">
+                    <label>Kuasa</label>
+                </div>
+                <div class="col-md-7 form-group">
+                    <input readonly type="text" class="form-control" @if (!empty($data->kuasa)) value="{{ $data->kuasa }}" @endif name="kuasa" placeholder="Kuasa">
                 </div>
                 <div class="col-md-5">
                     <label>Keterangan</label>
                 </div>
                 <div class="col-md-7 form-group">
-                    <input readonly type="text" class="form-control" @if (!empty($transaction->keterangan)) value="{{ $transaction->keterangan }}" @endif name="keterangan" placeholder="Cont. Cash">
+                    <input readonly type="text" class="form-control" @if (!empty($data->keterangan)) value="{{ $data->keterangan }}" @endif name="keterangan" placeholder="Cont. Cash">
                 </div>
                 <div class="col-md-12 pt-3">
-                    <p class="text-end fst-italic">Terakhir diperbarui @if (!empty($transaction->updated_at)) {{ $transaction->updated_at }} @else Null @endif</p>
+                    <p class="text-end fst-italic">Terakhir diperbarui @if (!empty($data->updated_at)) {{ $data->updated_at }} @else Null @endif</p>
                 </div>
             </div>
         </div>

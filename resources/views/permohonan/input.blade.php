@@ -7,24 +7,24 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-5">
-                        <label>No. KTP Pembeli</label>
+                        <label>No. KTP Pihak Pertama</label>
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control @error('ktp_pembeli') is-invalid @enderror" name="ktp_pembeli" placeholder="No. KTP Pembeli">
                         @error('ktp_pembeli')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            No. KTP tidak ditemukan!
                         </div>
                         @enderror
                     </div>
                     <div class="col-md-5">
-                        <label>No. KTP Penjual</label>
+                        <label>No. KTP Pihak Kedua</label>
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control @error('ktp_penjual') is-invalid @enderror" name="ktp_penjual" placeholder="No. KTP Penjual">
                         @error('ktp_penjual')
                         <div class="invalid-feedback">
-                            {{ $message }}
+                            No. KTP tidak ditemukan!
                         </div>
                         @enderror
                     </div>
@@ -43,7 +43,7 @@
                             <option value="Roya">Roya</option>
                           </select>
                     </div>
-                    {{-- <div class="col-md-5">
+                    <div class="col-md-5">
                         <label>Jenis Sertifikat</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -63,7 +63,7 @@
                             {{ $message }}
                         </div>
                         @enderror
-                    </div> --}}
+                    </div>
                     <div class="col-md-5">
                         <label>Petugas</label>
                     </div>
@@ -74,11 +74,29 @@
                             @endforeach
                           </select>
                     </div>
-                    {{-- <div class="col-md-5">
+                    <div class="col-md-5">
                         <label>NOP</label>
                     </div>
                     <div class="col-md-7 form-group">
                         <input type="text" class="form-control" value="{{ old('nop') }}" name="nop" placeholder="NOP">
+                    </div>
+                    <div class="col-md-5">
+                        <label>NIB</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('nib') }}" name="nib" placeholder="NIB">
+                    </div>
+                    <div class="col-md-5">
+                        <label>No Ukur</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('no_ukur') }}" name="no_ukur" placeholder="No Ukur">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Ukur</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="date" class="form-control" value="{{ old('tanggal_ukur') }}" name="tanggal_ukur" placeholder="Tanggal Ukur">
                     </div>
                     <div class="col-md-5">
                         <label>Luas Bangunan</label>
@@ -97,6 +115,12 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <textarea class="form-control" name="lokasi_objek" placeholder="Lokasi Objek"></textarea>
+                    </div>
+                    <div class="col-md-5">
+                        <label>Kav</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('kav') }}" name="kav" placeholder="Kav">
                     </div>
                     <div class="col-md-5">
                         <label>Kelurahan</label>
@@ -127,7 +151,61 @@
                     </div>
                     <div class="col-md-7 form-group">
                         <input id="nilai" type="text" class="form-control" value="{{ old('nilai_transaksi') }}" name="nilai_transaksi" placeholder="Nilai Transaksi">
-                    </div> --}}
+                    </div>
+                    <div class="col-md-5">
+                        <label>Terbilang</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('terbilang') }}" name="terbilang" placeholder="Terbilang">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Bayar BPHTB</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="date" class="form-control" value="{{ old('tanggal_bayar_bphtb') }}" name="tanggal_bayar_bphtb" placeholder="Tanggal Bayar BPHTB">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Jumlah Bayar BPHTB</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" id="jumlahbphtb" class="form-control" value="{{ old('jumlah_bayar_bphtb') }}" name="jumlah_bayar_bphtb" placeholder="Jumlah Bayar BPHTB">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Kode Bayar BPHTB</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('kode_bayar_bphtb') }}" name="kode_bayar_bphtb" placeholder="Kode Bayar BPHTB">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Tanggal Bayar PPH</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="date" class="form-control" value="{{ old('tanggal_bayar_pph') }}" name="tanggal_bayar_pph" placeholder="Tanggal Bayar PPH">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Jumlah Bayar PPH</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" id="jumlahpph" class="form-control" value="{{ old('jumlah_bayar_pph') }}" name="jumlah_bayar_pph" placeholder="Jumlah Bayar PPH">
+                    </div>
+                    <div class="col-md-5">
+                        <label>NTPN</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('ntpn') }}" name="ntpn" placeholder="NTPN">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Kuasa</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('kuasa') }}" name="kuasa" placeholder="Kuasa">
+                    </div>
+                    <div class="col-md-5">
+                        <label>Keterangan</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="text" class="form-control" value="{{ old('keterangan') }}" name="keterangan" placeholder="Cont. Cash">
+                    </div>
                     <div class="col-md-5">
                         <label>Tanggal Dibuat Permohonan</label>
                     </div>

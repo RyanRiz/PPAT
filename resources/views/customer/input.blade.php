@@ -37,6 +37,12 @@
                             <input type="date" data-date-format="mm/dd/yyyy" value="{{ old('date') }}" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
                         </div>
                         <div class="col-md-5">
+                            <label>Umur</label>
+                        </div>
+                        <div class="col-md-7 form-group">
+                            <input type="text" value="{{ old('umur') }}" class="form-control" name="umur" placeholder="Umur">
+                        </div>
+                        <div class="col-md-5">
                             <label>No. Handphone</label>
                         </div>
                         <div class="col-md-7 form-group">

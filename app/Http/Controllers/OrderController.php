@@ -58,9 +58,36 @@ class OrderController extends Controller
             "tanggal_permohonan" => "required",
             "tanggal_deadline" => "required",
             "petugas" => "required",
+            "sertifikat" => "required",
+            "jenis_sertifikat" => "required",
+            "nop" => "required",
+            "nib" => "required",
+            "no_ukur" => "required",
+            "tanggal_ukur" => "required",
+            "luas_tanah" => "required",
+            "luas_bangunan" => "required",
+            "lokasi_objek" => "required",
+            "kelurahan" => "required",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required",
+            "kav" => "required",
+            "nilai_transaksi" => "required",
+            "terbilang" => "required",
+            "tanggal_bayar_bphtb" => "required",
+            "tanggal_bayar_pph" => "required",
+            "jumlah_bayar_bphtb" => "required",
+            "jumlah_bayar_pph" => "required",
+            "kode_bayar_bphtb" => "required",
+            "ntpn" => "required",
+            "kuasa" => "required",
+            "keterangan" => "required",
         ]);
 
         $input = new Orders;
+        $biayabphtb = (int)str_replace([',', '.', 'Rp', ' '], '', $request->jumlah_bayar_bphtb);
+        $biayapph = (int)str_replace([',', '.', 'Rp', ' '], '', $request->jumlah_bayar_pph);
+        $biayatransaksi = (int)str_replace([',', '.', 'Rp', ' '], '', $request->nilai_transaksi);
 
         $input->ktp_pembeli = $request->ktp_pembeli;
         $input->ktp_penjual = $request->ktp_penjual;
@@ -69,6 +96,30 @@ class OrderController extends Controller
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = false;
+        $input->sertifikat = $request->sertifikat;
+        $input->jenis_sertifikat = $request->jenis_sertifikat;
+        $input->nop = $request->nop;
+        $input->nib = $request->nib;
+        $input->no_ukur = $request->no_ukur;
+        $input->tanggal_ukur = $request->tanggal_ukur;
+        $input->luas_tanah = $request->luas_tanah;
+        $input->luas_bangunan = $request->luas_bangunan;
+        $input->lokasi_objek = $request->lokasi_objek;
+        $input->kelurahan = $request->kelurahan;
+        $input->kecamatan = $request->kecamatan;
+        $input->kabupaten = $request->kabupaten;
+        $input->provinsi = $request->provinsi;
+        $input->kav = $request->kav;
+        $input->nilai_transaksi = $biayatransaksi;
+        $input->terbilang = $request->terbilang;
+        $input->tanggal_bayar_bphtb = $request->tanggal_bayar_bphtb;
+        $input->tanggal_bayar_pph = $request->tanggal_bayar_pph;
+        $input->jumlah_bayar_bphtb = $biayabphtb;
+        $input->jumlah_bayar_pph = $biayapph;
+        $input->kode_bayar_bphtb = $request->kode_bayar_bphtb;
+        $input->ntpn = $request->ntpn;
+        $input->kuasa = $request->kuasa;
+        $input->keterangan = $request->keterangan;
 
         $input->save();
         return redirect()->route('index.permohonan')->with('message','Data berhasil ditambahkan!');
@@ -87,59 +138,6 @@ class OrderController extends Controller
         return redirect()->back()->with('message','Rincian berhasil ditambahkan!');
     }
 
-    public function store_certificate($id, Request $request)
-    {
-        $order = Orders::find($id);
-
-        $certi = new OrderCertificates();
-        $certi->sertifikat = $request->sertifikat;
-        $certi->jenis_sertifikat = $request->jenis_sertifikat;
-        $certi->nop = $request->nop;
-        $certi->nib = $request->nib;
-        $certi->no_ukur = $request->no_ukur;
-        $certi->tanggal_ukur = $request->tanggal_ukur;
-        $order->certificates()->save($certi);
-        return redirect()->back()->with('message','Sertifikat berhasil ditambahkan!');
-    }
-
-    public function store_place($id, Request $request)
-    {
-        $order = Orders::find($id);
-
-        $place = new OrderPlaces();
-        $place->luas_tanah = $request->luas_tanah;
-        $place->luas_bangunan = $request->luas_bangunan;
-        $place->lokasi_objek = $request->lokasi_objek;
-        $place->kelurahan = $request->kelurahan;
-        $place->kecamatan = $request->kecamatan;
-        $place->kabupaten = $request->kabupaten;
-        $place->provinsi = $request->provinsi;
-        $place->kav = $request->kav;
-
-        $order->place()->save($place);
-        return redirect()->back()->with('message','Lokasi berhasil ditambahkan!');
-    }
-
-    public function store_transaction($id, Request $request)
-    {
-        $order = Orders::find($id);
-
-        $transaction = new OrderTransactions();
-        $transaction->nilai_transaksi = $request->nilai_transaksi;
-        $transaction->terbilang = $request->terbilang;
-        $transaction->tanggal_bayar_bphtb = $request->tanggal_bayar_bphtb;
-        $transaction->tanggal_bayar_pph = $request->tanggal_bayar_pph;
-        $transaction->jumlah_bayar_bphtb = $request->jumlah_bayar_bphtb;
-        $transaction->jumlah_bayar_pph = $request->jumlah_bayar_pph;
-        $transaction->kode_bayar_bphtb = $request->kode_bayar_bphtb;
-        $transaction->ntpn = $request->ntpn;
-        $transaction->keterangan = $request->keterangan;
-
-        $order->transactions()->save($transaction);
-        return redirect()->back()->with('message','Transaksi berhasil ditambahkan!');
-
-    }
-
     /**
      * Display the specified resource.
      *
@@ -150,18 +148,12 @@ class OrderController extends Controller
     {
         $data = Orders::find($id);
         $customer = Customers::all();
-        $certificate = Orders::find($id)->certificates;
-        $place = Orders::find($id)->place;
-        $transaction = Orders::find($id)->transactions;
         $workers = Workers::where('job', 1)->get();
         return view('permohonan.show', [
             'title' => 'Data Permohonan',
             'data' => $data,
             'customer' => $customer,
             'workers' => $workers,
-            'certificate' => $certificate,
-            'place' => $place,
-            'transaction' => $transaction
         ]);
     }
 
@@ -175,18 +167,12 @@ class OrderController extends Controller
     {
         $data = Orders::find($id);
         $customer = Customers::all();
-        $certificate = Orders::find($id)->certificates;
-        $place = Orders::find($id)->place;
-        $transaction = Orders::find($id)->transactions;
         $workers = Workers::where('job', 1)->get();
         return view('permohonan.edit', [
             'title' => 'Data Permohonan',
             'data' => $data,
             'customer' => $customer,
             'workers' => $workers,
-            'certificate' => $certificate,
-            'place' => $place,
-            'transaction' => $transaction
         ]);
     }
 
@@ -199,10 +185,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            "ktp_pembeli" => "required|exists:customers,ktp",
+            "ktp_penjual" => "required|exists:customers,ktp",
+        ]);
+
         $datas = Orders::all();
         $input = $datas->find($id);
 
-        $nilai_transaksi = (int)str_replace([',', '.', 'Rp', ' '], '', $request->nilai_transaksi);
+        $biayabphtb = (int)str_replace([',', '.', 'Rp', ' '], '', $request->jumlah_bayar_bphtb);
+        $biayapph = (int)str_replace([',', '.', 'Rp', ' '], '', $request->jumlah_bayar_pph);
+        $biayatransaksi = (int)str_replace([',', '.', 'Rp', ' '], '', $request->nilai_transaksi);
 
         $input->ktp_pembeli = $request->ktp_pembeli;
         $input->ktp_penjual = $request->ktp_penjual;
@@ -211,6 +204,30 @@ class OrderController extends Controller
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = $request->confirmed;
+        $input->sertifikat = $request->sertifikat;
+        $input->jenis_sertifikat = $request->jenis_sertifikat;
+        $input->nop = $request->nop;
+        $input->nib = $request->nib;
+        $input->no_ukur = $request->no_ukur;
+        $input->tanggal_ukur = $request->tanggal_ukur;
+        $input->luas_tanah = $request->luas_tanah;
+        $input->luas_bangunan = $request->luas_bangunan;
+        $input->lokasi_objek = $request->lokasi_objek;
+        $input->kelurahan = $request->kelurahan;
+        $input->kecamatan = $request->kecamatan;
+        $input->kabupaten = $request->kabupaten;
+        $input->provinsi = $request->provinsi;
+        $input->kav = $request->kav;
+        $input->nilai_transaksi = $biayatransaksi;
+        $input->terbilang = $request->terbilang;
+        $input->tanggal_bayar_bphtb = $request->tanggal_bayar_bphtb;
+        $input->tanggal_bayar_pph = $request->tanggal_bayar_pph;
+        $input->jumlah_bayar_bphtb = $biayabphtb;
+        $input->jumlah_bayar_pph = $biayapph;
+        $input->kode_bayar_bphtb = $request->kode_bayar_bphtb;
+        $input->ntpn = $request->ntpn;
+        $input->kuasa = $request->kuasa;
+        $input->keterangan = $request->keterangan;
 
         $input->save();
         return redirect()->back()->with('message','Data berhasil diubah!');

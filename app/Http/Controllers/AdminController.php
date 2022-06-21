@@ -8,7 +8,6 @@ use App\Models\Outcomes;
 use App\Models\Customers;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
-use App\Models\OrderCertificates;
 
 class AdminController extends Controller
 {
@@ -21,7 +20,6 @@ class AdminController extends Controller
         $orders = Orders::all();
         $customers = Customers::all();
         $months = Carbon::now();
-        $certificates = OrderCertificates::all();
         $order = Orders::whereMonth('tanggal_permohonan', $months->month)->count();
         $outcomes = Outcomes::whereMonth('tanggal_pembelian', $months->month)->sum('total_harga');
         $datas = Orders::latest()->take(5)->get();
@@ -35,7 +33,6 @@ class AdminController extends Controller
             'customers' => $customers,
             'deadlines' => $deadlines,
             'months' => $months,
-            'certificates' => $certificates
         ]);
     }
 }

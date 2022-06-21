@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
+            $table->string('umur');
             $table->string('telepon');
             $table->string('pekerjaan');
             $table->string('alamat');

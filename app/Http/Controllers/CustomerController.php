@@ -45,6 +45,7 @@ class CustomerController extends Controller
             "nama" => "required",
             "tanggal_lahir" => "required",
             "tempat_lahir" => "required",
+            "umur" => "required",
             "telepon" => "required",
             "pekerjaan" => "required",
             "npwp" => "required",
@@ -57,6 +58,7 @@ class CustomerController extends Controller
         $input->nama = $request->nama;
         $input->tempat_lahir = $request->tempat_lahir;
         $input->tanggal_lahir = $request->tanggal_lahir;
+        $input->umur = $request->umur;
         $input->telepon = $request->telepon;
         $input->pekerjaan = $request->pekerjaan;
         $input->npwp = $request->npwp;
@@ -113,6 +115,7 @@ class CustomerController extends Controller
         $data->nama = $request->nama;
         $data->tempat_lahir = $request->tempat_lahir;
         $data->tanggal_lahir = $request->tanggal_lahir;
+        $data->umur = $request->umur;
         $data->telepon = $request->telepon;
         $data->pekerjaan = $request->pekerjaan;
         $data->npwp = $request->npwp;
