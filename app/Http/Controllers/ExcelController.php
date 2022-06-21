@@ -19,14 +19,16 @@ class ExcelController extends Controller
     public function index()
     {
         $pembeli = Orders::pluck('ktp_pembeli');
-        $customers = Customers::where('ktp', $pembeli)->get();
         $penjual = Orders::pluck('ktp_penjual');
-        $sellers = Customers::where('ktp', $penjual)->get();
+
+        $customers = Customers::get();
+
         return view('excel.main', [
             'title' => 'Database',
             "orders" => Orders::all(),
-            "pembeli" => $customers,
-            "penjual" => $sellers,
+            "customers" => $customers,
+            "pembeli" => $pembeli,
+            "penjual" => $penjual,
         ]);
     }
 }
