@@ -18,17 +18,18 @@ class ExcelController extends Controller
 
     public function index()
     {
-        $pembeli = Orders::pluck('ktp_pembeli');
-        $penjual = Orders::pluck('ktp_penjual');
-
         $customers = Customers::get();
+
+        $orders = Orders::all();
+
+
 
         return view('excel.main', [
             'title' => 'Database',
             "orders" => Orders::all(),
             "customers" => $customers,
-            "pembeli" => $pembeli,
-            "penjual" => $penjual,
+            "pembeli" => Customers::get(),
+            "penjual" => Customers::get(),
         ]);
     }
 }

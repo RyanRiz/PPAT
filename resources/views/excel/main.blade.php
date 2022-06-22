@@ -61,30 +61,26 @@
                 <tr>
                     <td>{{ $number +1 }}</td>
                     <td>{{ date('d-m-Y', strtotime($order->tanggal_permohonan)) }}</td>
-                    @foreach($pembeli as $ktp)
-                    @foreach ($customers->where('ktp', $ktp) as $beli)
-                    <td>{{ $beli->nama }}</td>
-                    <td>{{ date('d-m-Y', strtotime($beli->tanggal_lahir)) }}</td>
-                    <td>{{ $beli->umur }}</td>
-                    <td>{{ $beli->pekerjaan }}</td>
-                    <td>{{ $beli->alamat }}</td>
-                    <td>{{ $beli->ktp }}</td>
-                    <td>{{ $beli->npwp }}</td>
-                    <td>{{ $beli->telepon }}</td>
-                    @endforeach
-                    @endforeach
-                    @foreach($penjual as $ktp)
-                    @foreach ($customers->where('ktp', $ktp) as $jual)
-                    <td>{{ $jual->nama }}</td>
-                    <td>{{ date('d-m-Y', strtotime($jual->tanggal_lahir)) }}</td>
-                    <td>{{ $jual->umur }}</td>
-                    <td>{{ $jual->pekerjaan }}</td>
-                    <td>{{ $jual->alamat }}</td>
-                    <td>{{ $jual->ktp }}</td>
-                    <td>{{ $jual->npwp }}</td>
-                    <td>{{ $jual->telepon }}</td>
-                    @endforeach
-                    @endforeach
+                {{-- @dd($pembeli->where('ktp', $order->ktp_pembeli)->first()) --}}
+                    
+                    @php ($pembeli = $pembeli->where('ktp', $order->ktp_pembeli)->first())
+                    <td>{{ $pembeli->nama }}</td>
+                    <td>{{ date('d-m-Y', strtotime($pembeli->tanggal_lahir)) }}</td>
+                    <td>{{ $pembeli->umur }}</td>
+                    <td>{{ $pembeli->pekerjaan }}</td>
+                    <td>{{ $pembeli->alamat }}</td>
+                    <td>{{ $pembeli->ktp }}</td>
+                    <td>{{ $pembeli->npwp }}</td>
+                    <td>{{ $pembeli->telepon }}</td>
+                    @php ($penjual = $penjual->where('ktp', $order->ktp_penjual)->first())
+                    <td>{{ $penjual->nama }}</td>
+                    <td>{{ date('d-m-Y', strtotime($penjual->tanggal_lahir)) }}</td>
+                    <td>{{ $penjual->umur }}</td>
+                    <td>{{ $penjual->pekerjaan }}</td>
+                    <td>{{ $penjual->alamat }}</td>
+                    <td>{{ $penjual->ktp }}</td>
+                    <td>{{ $penjual->npwp }}</td>
+                    <td>{{ $penjual->telepon }}</td>
 
                     <td>{{ $order->lokasi_objek }}</td>
                     <td>{{ $order->kelurahan }}</td>
