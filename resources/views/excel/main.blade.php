@@ -14,8 +14,10 @@
         <table class="table table-stripped pe-4" id="database">
             <thead>
                 <th>No</th>
+                <th>ID Permohonan</th>
                 <th>Tanggal</th>
                 <th>Pihak I</th>
+                <th>Tempat Lahir Pihak I</th>
                 <th>Tanggal Lahir Pihak I</th>
                 <th>Umur Pihak I</th>
                 <th>Pekerjaan Pihak I</th>
@@ -24,6 +26,7 @@
                 <th>NPWP Pihak I</th>
                 <th>Telpon Pihak I</th>
                 <th>Pihak II</th>
+                <th>Tempat Lahir Pihak II</th>
                 <th>Tanggal Lahir Pihak II</th>
                 <th>Umur Pihak II</th>
                 <th>Pekerjaan Pihak II</th>
@@ -39,10 +42,12 @@
                 <th>NOP</th>
                 <th>No/Kav</th>
                 <th>Luas Tanah</th>
+                <th>Luas Bangunan</th>
                 <th>Nilai Transaksi</th>
                 <th>Terbilang</th>
                 <th>Jenis Akta</th>
-                <th>Sertifikat</th>
+                <th>Jenis Sertifikat</th>
+                <th>No. Sertifikat</th>
                 <th>NIB</th>
                 <th>No. Ukur</th>
                 <th>Tanggal Ukur</th>
@@ -55,16 +60,19 @@
                 <th>NTPN</th>
                 <th>Estimasi Selesai</th>
                 <th>Keterangan</th>
+                <th>Status</th>
             </thead>
             <tbody>
                 @foreach ($orders as $number => $order)
                 <tr>
                     <td>{{ $number +1 }}</td>
+                    <td>{{ $order->id }}
                     <td>{{ date('d-m-Y', strtotime($order->tanggal_permohonan)) }}</td>
                 {{-- @dd($pembeli->where('ktp', $order->ktp_pembeli)->first()) --}}
-                    
+
                     @php ($pembeli = $pembeli->where('ktp', $order->ktp_pembeli)->first())
                     <td>{{ $pembeli->nama }}</td>
+                    <td>{{ $pembeli->tempat_lahir }}</td>
                     <td>{{ date('d-m-Y', strtotime($pembeli->tanggal_lahir)) }}</td>
                     <td>{{ $pembeli->umur }}</td>
                     <td>{{ $pembeli->pekerjaan }}</td>
@@ -74,6 +82,7 @@
                     <td>{{ $pembeli->telepon }}</td>
                     @php ($penjual = $penjual->where('ktp', $order->ktp_penjual)->first())
                     <td>{{ $penjual->nama }}</td>
+                    <td>{{ $penjual->tempat_lahir }}</td>
                     <td>{{ date('d-m-Y', strtotime($penjual->tanggal_lahir)) }}</td>
                     <td>{{ $penjual->umur }}</td>
                     <td>{{ $penjual->pekerjaan }}</td>
@@ -90,10 +99,12 @@
                     <td>{{ $order->nop }}</td>
                     <td>{{ $order->kav }}</td>
                     <td>{{ $order->luas_tanah }}</td>
+                    <td>{{ $order->luas_bangunan }}</td>
                     <td>Rp. {{ number_format($order->nilai_transaksi, 0, ',', '.') }}</td>
                     <td>{{ $order->terbilang }}</td>
                     <td>{{ $order->jenis_permohonan }}</td>
-                    <td>{{ $order->jenis_sertifikat }} {{ $order->sertifikat }}</td>
+                    <td>{{ $order->jenis_sertifikat }}</td>
+                    <td>{{ $order->sertifikat }}</td>
                     <td>{{ $order->nib }}</td>
                     <td>{{ $order->no_ukur }}</td>
                     <td>{{ date('d-m-Y', strtotime($order->tanggal_ukur)) }}</td>
@@ -106,13 +117,16 @@
                     <td>{{ $order->ntpn }}</td>
                     <td>{{ date('d-m-Y', strtotime($order->tanggal_deadline)) }}</td>
                     <td>{{ $order->keterangan }}</td>
+                    <td>{{ $order->confirmed }}</td>
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <th>No</th>
+                <th>ID Permohonan</th>
                 <th>Tanggal</th>
                 <th>Pihak I</th>
+                <th>Tempat Lahir Pihak I</th>
                 <th>Tanggal Lahir Pihak I</th>
                 <th>Umur Pihak I</th>
                 <th>Pekerjaan Pihak I</th>
@@ -121,6 +135,7 @@
                 <th>NPWP Pihak I</th>
                 <th>Telpon Pihak I</th>
                 <th>Pihak II</th>
+                <th>Tempat Lahir Pihak II</th>
                 <th>Tanggal Lahir Pihak II</th>
                 <th>Umur Pihak II</th>
                 <th>Pekerjaan Pihak II</th>
@@ -136,10 +151,12 @@
                 <th>NOP</th>
                 <th>No/Kav</th>
                 <th>Luas Tanah</th>
+                <th>Luas Bangunan</th>
                 <th>Nilai Transaksi</th>
                 <th>Terbilang</th>
                 <th>Jenis Akta</th>
-                <th>Sertifikat</th>
+                <th>Jenis Sertifikat</th>
+                <th>No. Sertifikat</th>
                 <th>NIB</th>
                 <th>No. Ukur</th>
                 <th>Tanggal Ukur</th>
@@ -152,6 +169,7 @@
                 <th>NTPN</th>
                 <th>Estimasi Selesai</th>
                 <th>Keterangan</th>
+                <th>Status</th>
             </tfoot>
         </table>
     </div>
@@ -166,10 +184,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('import') }}" method="post">
+                <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <input type="file" class="form-control mb-3" name="import">
+                        <input required type="file" class="form-control mb-3" name="import">
                     </div>
                     <div class="d-flex justify-content-center">
                         <div class="pe-3">

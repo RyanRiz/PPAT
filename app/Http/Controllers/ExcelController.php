@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExcelExport;
-use Illuminate\Http\Request;
 use Excel;
 use App\Models\Orders;
 use App\Models\Customers;
+use App\Exports\ExcelExport;
+use App\Imports\ExcelImport;
+use Illuminate\Http\Request;
 
 
 class ExcelController extends Controller
 {
-    public function export()
-    {
-        return Excel::download(new ExcelExport, 'Data.xlsx');
-    }
-
     public function index()
     {
         $customers = Customers::get();
 
         $orders = Orders::all();
-
-
 
         return view('excel.main', [
             'title' => 'Database',
@@ -31,5 +25,10 @@ class ExcelController extends Controller
             "pembeli" => Customers::get(),
             "penjual" => Customers::get(),
         ]);
+    }
+
+    public function import(Request $request){
+        Excel::import(new ExcelImport, $request->file('import'));
+        return back()->with('message','File berhasil diunggah!');
     }
 }

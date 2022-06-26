@@ -18,7 +18,7 @@ class Permohonan extends Migration
             $table->integer('ktp_pembeli');
             $table->integer('ktp_penjual');
             $table->string('jenis_permohonan');
-            $table->string('petugas');
+            $table->string('petugas')->nullable();
             $table->date('tanggal_permohonan');
             $table->date('tanggal_deadline');
             $table->boolean('confirmed');

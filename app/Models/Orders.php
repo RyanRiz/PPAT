@@ -9,19 +9,9 @@ class Orders extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function details(){
         return $this->hasMany(OrderDetails::class);
-    }
-
-    public function certificates(){
-        return $this->hasOne(OrderCertificates::class);
-    }
-
-    public function places(){
-        return $this->hasOne(OrderPlaces::class);
-    }
-
-    public function transactions(){
-        return $this->hasOne(OrderTransactions::class);
     }
 }
