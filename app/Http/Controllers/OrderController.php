@@ -60,6 +60,7 @@ class OrderController extends Controller
             "petugas" => "required",
             "sertifikat" => "required",
             "jenis_sertifikat" => "required",
+            "tanggal_sertifikat" => "required",
             "nop" => "required",
             "nib" => "required",
             "no_ukur" => "required",
@@ -98,6 +99,7 @@ class OrderController extends Controller
         $input->confirmed = false;
         $input->sertifikat = $request->sertifikat;
         $input->jenis_sertifikat = $request->jenis_sertifikat;
+        $input->tanggal_sertifikat = $request->tanggal_sertifikat;
         $input->nop = $request->nop;
         $input->nib = $request->nib;
         $input->no_ukur = $request->no_ukur;
@@ -206,6 +208,7 @@ class OrderController extends Controller
         $input->confirmed = $request->confirmed;
         $input->sertifikat = $request->sertifikat;
         $input->jenis_sertifikat = $request->jenis_sertifikat;
+        $input->tanggal_sertifikat = $request->tanggal_sertifikat;
         $input->nop = $request->nop;
         $input->nib = $request->nib;
         $input->no_ukur = $request->no_ukur;

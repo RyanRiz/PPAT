@@ -48,6 +48,7 @@
                 <th>Jenis Akta</th>
                 <th>Jenis Sertifikat</th>
                 <th>No. Sertifikat</th>
+                <th>Tanggal Terbit Sertifikat</th>
                 <th>NIB</th>
                 <th>No. Ukur</th>
                 <th>Tanggal Ukur</th>
@@ -105,6 +106,7 @@
                     <td>{{ $order->jenis_permohonan }}</td>
                     <td>{{ $order->jenis_sertifikat }}</td>
                     <td>{{ $order->sertifikat }}</td>
+                    <td>{{ $order->tanggal_sertifikat }}</td>
                     <td>{{ $order->nib }}</td>
                     <td>{{ $order->no_ukur }}</td>
                     <td>{{ date('d-m-Y', strtotime($order->tanggal_ukur)) }}</td>
@@ -157,6 +159,7 @@
                 <th>Jenis Akta</th>
                 <th>Jenis Sertifikat</th>
                 <th>No. Sertifikat</th>
+                <th>Tanggal Terbit Sertifikat</th>
                 <th>NIB</th>
                 <th>No. Ukur</th>
                 <th>Tanggal Ukur</th>

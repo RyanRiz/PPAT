@@ -65,6 +65,12 @@
                         @enderror
                     </div>
                     <div class="col-md-5">
+                        <label>Tanggal Terbit Sertifikat</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="date" class="form-control" value="{{ old('tanggal_sertifikat') }}" name="tanggal_sertifikat" placeholder="Tanggal Terbit Sertifikat">
+                    </div>
+                    <div class="col-md-5">
                         <label>Petugas</label>
                     </div>
                     <div class="col-md-7 form-group">

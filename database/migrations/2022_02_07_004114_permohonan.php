@@ -24,6 +24,7 @@ class Permohonan extends Migration
             $table->boolean('confirmed');
             $table->string('jenis_sertifikat');
             $table->string('sertifikat');
+            $table->date('tanggal_sertifikat');
             $table->string('nop');
             $table->string('nib');
             $table->string('no_ukur');

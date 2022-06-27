@@ -88,6 +88,12 @@
                         @enderror
                     </div>
                     <div class="col-md-5">
+                        <label>Tanggal Terbit Sertifikat</label>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <input required type="date" class="form-control" @if (!empty($data->tanggal_sertifikat)) value="{{ $data->tanggal_sertifikat }}" @endif name="tanggal_sertifikat" placeholder="Tanggal Terbit Sertifikat">
+                    </div>
+                    <div class="col-md-5">
                         <label>NOP</label>
                     </div>
                     <div class="col-md-7 form-group">
