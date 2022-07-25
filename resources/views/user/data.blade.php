@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body d-block overflow-auto">
             <table class="table table-striped" id="data_User">
                 <thead class="bg-primary text-white">
                     <th>No</th>
@@ -19,13 +19,14 @@
                 <tbody>
                     @foreach ($datas as $number => $data)
                         <tr>
-                            <td>{{ $number +1 }}</td>
+                            <td>{{ $number + 1 }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->username }}</td>
                             <td>{{ $data->roles }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a class="btn btn-secondary me-2" href="{{ route('show.user', $data->id) }}" role="button">Rincian</a>
+                                    <a class="btn btn-secondary me-2" href="{{ route('show.user', $data->id) }}"
+                                        role="button">Rincian</a>
                                 </div>
                             </td>
                         </tr>
@@ -44,11 +45,9 @@
 @endsection
 
 @push('scripts')
-
-<script>
-    $(document).ready( function () {
-        $('#data_User').DataTable( );
-    } );
-</script>
-
+    <script>
+        $(document).ready(function() {
+            $('#data_User').DataTable();
+        });
+    </script>
 @endpush

@@ -1,14 +1,13 @@
 @extends('layouts.main')
 
 @section('main')
-
     <div class="pb-4">
         <a class="btn btn-primary" href="{{ route('form.customer') }}" role="button"><i class="mdi mdi-file-plus"></i>
             Tambah Customer
         </a>
     </div>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body d-block overflow-auto">
             <table class="table table-striped" id="dataNasabah">
                 <thead class="bg-primary text-white">
                     <tr>
@@ -24,17 +23,18 @@
                 <tbody>
                     @foreach ($datas as $number => $data)
                         <tr>
-                           <td>{{ $number +1 }}</td>
-                           <td>{{ $data->ktp }}</td>
-                           <td>{{ $data->nama }}</td>
-                           <td>{{ $data->telepon }}</td>
-                           <td>{{ $data->pekerjaan }}</td>
-                           <td>{{ $data->created_at->format('d-m-Y') }}</td>
-                           <td>
-                               <div class="d-flex">
-                                   <a class="btn btn-secondary me-2" href="{{ route('show.customer', $data->id) }}" role="button">Rincian</a>
-                               </div>
-                           </td>
+                            <td>{{ $number + 1 }}</td>
+                            <td>{{ $data->ktp }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->telepon }}</td>
+                            <td>{{ $data->pekerjaan }}</td>
+                            <td>{{ $data->created_at->format('d-m-Y') }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-secondary me-2" href="{{ route('show.customer', $data->id) }}"
+                                        role="button">Rincian</a>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -53,11 +53,13 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#dataNasabah').DataTable( {
-            "order": [[ 0, "asc" ]]
-        } );
-    } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#dataNasabah').DataTable({
+                "order": [
+                    [0, "asc"]
+                ]
+            });
+        });
+    </script>
 @endpush

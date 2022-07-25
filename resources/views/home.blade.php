@@ -80,7 +80,7 @@
                     <div class="card-header">
                         <h5><i class="mdi mdi-archive-plus"></i> Permohonan Terbaru</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-block overflow-auto">
                         <table class="table table-striped" id="dataNew">
                             <thead class="bg-primary text-white">
                                 <tr>
@@ -94,11 +94,13 @@
                             <tbody>
                                 @foreach ($datas as $number => $data)
                                     <tr>
-                                        <td>{{ $number+1 }}</td>
-                                        <td>{{ $customers->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $number + 1 }}</td>
+                                        <td>{{ $customers->where('ktp', $data->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}
+                                        </td>
                                         <td>{{ $data->jenis_permohonan }}</td>
                                         <td>{{ $data->jenis_sertifikat }}</td>
-                                        <td>{{ $customers->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $customers->where('ktp', $data->ktp_penjual)->pluck('nama')->implode('[]', '"') }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -111,7 +113,7 @@
                     <div class="card-header">
                         <h5><i class="mdi mdi-bell"></i> Pengingat Deadline</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-block overflow-auto">
                         <table class="table table-striped" id="dataNotice">
                             <thead class="bg-primary text-white">
                                 <tr>
@@ -126,10 +128,12 @@
                             <tbody class="text-black">
                                 @foreach ($deadlines as $number => $deadline)
                                     <tr>
-                                        <td>{{ $number+1 }}</td>
-                                        <td>{{ $customers->where('ktp', $deadline->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $number + 1 }}</td>
+                                        <td>{{ $customers->where('ktp', $deadline->ktp_pembeli)->pluck('nama')->implode('[]', '"') }}
+                                        </td>
                                         <td>{{ $deadline->jenis_permohonan }}</td>
-                                        <td>{{ $customers->where('ktp', $deadline->ktp_penjual)->pluck('nama')->implode('[]', '"') }}</td>
+                                        <td>{{ $customers->where('ktp', $deadline->ktp_penjual)->pluck('nama')->implode('[]', '"') }}
+                                        </td>
                                         <td>{{ date('d-m-Y', strtotime($deadline->tanggal_deadline)) }}</td>
                                         <td>{{ $months->parse($deadline->tanggal_deadline)->diffForHumans() }}</td>
                                     </tr>
@@ -144,24 +148,24 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#dataNew').DataTable( {
-            "paging":   false,
-            "info":     false,
-            "searching": false,
-            "order": false
-        } );
-    } );
-</script>
-<script>
-    $(document).ready(function() {
-        $('#dataNotice').DataTable( {
-            "paging":   false,
-            "info":     false,
-            "searching": false,
-            "order": false
-        } );
-    } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#dataNew').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "order": false
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#dataNotice').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "order": false
+            });
+        });
+    </script>
 @endpush

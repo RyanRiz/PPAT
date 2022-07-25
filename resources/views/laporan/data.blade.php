@@ -1,9 +1,8 @@
 @extends('layouts.main')
 
 @section('main')
-
     <div class="card">
-        <div class="card-body">
+        <div class="card-body d-block overflow-auto">
             <table class="table table-striped" id="dataPengeluaran">
                 <thead class="bg-primary text-white">
                     <th>No</th>
@@ -12,11 +11,11 @@
                 </thead>
                 <tbody>
                     @foreach ($datas as $number => $data)
-                    <tr>
-                        <td>{{ $number +1 }}</td>
-                        <td>{{ $data->months }}</td>
-                        <td>Rp. {{ number_format($data->total, 0, ',', '.') }}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $number + 1 }}</td>
+                            <td>{{ $data->months }}</td>
+                            <td>Rp. {{ number_format($data->total, 0, ',', '.') }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
                 <tfoot class="bg-primary text-white">
@@ -30,11 +29,13 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#dataPengeluaran').DataTable( {
-            "order": [[ 0, "asc" ]]
-        } );
-    } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#dataPengeluaran').DataTable({
+                "order": [
+                    [0, "asc"]
+                ]
+            });
+        });
+    </script>
 @endpush
