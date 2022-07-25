@@ -44,7 +44,7 @@
                             <option value="Roya" @if ($data->jenis_permohonan == "Roya") selected @endif>Roya</option>
                         </select>
                     </div>
-                    <div class="col-md-5">
+                    {{-- <div class="col-md-5">
                         <label>Petugas</label>
                     </div>
                     <div class="col-md-7 form-group">
@@ -53,7 +53,7 @@
                                 <option value="{{ $worker->id }}" @if ($data->petugas == $worker->id) selected @endif>{{ $worker->nama }}</option>
                             @endforeach
                           </select>
-                    </div>
+                    </div> --}}
                     <div class="col-md-5">
                         <label>Tanggal Dibuat Permohonan</label>
                     </div>

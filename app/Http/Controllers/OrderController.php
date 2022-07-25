@@ -57,7 +57,6 @@ class OrderController extends Controller
             "jenis_permohonan" => "required",
             "tanggal_permohonan" => "required",
             "tanggal_deadline" => "required",
-            "petugas" => "required",
             "sertifikat" => "required",
             "jenis_sertifikat" => "required",
             "tanggal_sertifikat" => "required",
@@ -93,7 +92,7 @@ class OrderController extends Controller
         $input->ktp_pembeli = $request->ktp_pembeli;
         $input->ktp_penjual = $request->ktp_penjual;
         $input->jenis_permohonan = $request->jenis_permohonan;
-        $input->petugas = $request->petugas;
+        // $input->petugas = $request->petugas;
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = false;
@@ -202,7 +201,7 @@ class OrderController extends Controller
         $input->ktp_pembeli = $request->ktp_pembeli;
         $input->ktp_penjual = $request->ktp_penjual;
         $input->jenis_permohonan = $request->jenis_permohonan;
-        $input->petugas = $request->petugas;
+        // $input->petugas = $request->petugas;
         $input->tanggal_permohonan = $request->tanggal_permohonan;
         $input->tanggal_deadline = $request->tanggal_deadline;
         $input->confirmed = $request->confirmed;
